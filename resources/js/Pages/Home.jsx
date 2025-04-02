@@ -2,14 +2,102 @@ import { Head } from '@inertiajs/react';
 
 export default function Home() {
     return (
-        <main className="">
+        <main className="flex min-h-screen w-screen items-center justify-around bg-gray-50">
             <Head title="Home" />
-            <section>Image</section>
-            <section>
-                <header>
-                    <h1>Login</h1>
-                </header>
-                <form action=""></form>
+            <section
+                className="hidden h-screen w-1/2 bg-cover bg-center bg-no-repeat lg:block"
+                style={{
+                    backgroundImage:
+                        "url('https://cdn.pixabay.com/photo/2016/09/03/23/34/cashbox-1642989_1280.jpg')",
+                }}
+            >
+                <div className="h-full w-full bg-black bg-opacity-50"></div>
+            </section>
+            <section className="flex h-screen w-1/2 flex-col items-center justify-center gap-4 bg-white">
+                <form
+                    action=""
+                    className="flex w-96 flex-col gap-4 rounded-lg p-10"
+                >
+                    <h1 className="text-quaternary text-center text-3xl font-bold">
+                        Register
+                    </h1>
+                    <p className="text-center text-gray-700">
+                        By registering, you accept our terms and privacy policy.
+                    </p>
+                    <label htmlFor="name" className="flex flex-col">
+                        <span className="text-quaternary font-bold">name</span>
+                        <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            placeholder="Name"
+                            className="rounded-lg"
+                        />
+                    </label>
+                    <label htmlFor="email" className="flex flex-col">
+                        <span className="text-quaternary font-bold">Email</span>
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder="Email"
+                            className="rounded-lg"
+                        />
+                    </label>
+                    <label htmlFor="password" className="flex flex-col">
+                        <span className="text-quaternary font-bold">
+                            Password
+                        </span>
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            placeholder="Password"
+                            className="rounded-lg"
+                        />
+                    </label>
+                    <button
+                        type="submit"
+                        className="bg-sixth text-primary rounded-lg py-2 font-bold"
+                    >
+                        Register
+                    </button>
+                    <div className="flex w-full flex-col gap-2">
+                        <div className="flex w-full items-center space-x-2">
+                            <hr className="w-full flex-grow border-black" />
+                            <span className="text-sm font-bold text-zinc-700 dark:text-zinc-700">
+                                OR
+                            </span>
+                            <hr className="w-full flex-grow border-zinc-700" />
+                        </div>
+                        <button className="ring-offset-background focus-visible:ring-ring border-input hover:bg-accent hover:text-accent-foreground inline-flex h-10 w-full items-center justify-center whitespace-nowrap rounded-md border bg-[#4285F4] px-4 py-2 text-sm font-medium text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                            <div className="flex items-center justify-center">
+                                <svg
+                                    role="img"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="mr-2 h-5 w-5 fill-white"
+                                >
+                                    <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" />
+                                </svg>
+                                Login with Google
+                            </div>
+                        </button>
+                        <button className="ring-offset-background focus-visible:ring-ring border-input hover:bg-accent hover:text-accent-foreground inline-flex h-10 w-full items-center justify-center whitespace-nowrap rounded-md border bg-[#5865F2] px-4 py-2 text-sm font-medium text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                            <div className="flex items-center justify-center">
+                                <svg
+                                    role="img"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="mr-2 h-5 w-5 fill-white"
+                                >
+                                    <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z" />
+                                </svg>
+                                Login with Twitter
+                            </div>
+                        </button>
+                    </div>
+                </form>
             </section>
         </main>
     );
