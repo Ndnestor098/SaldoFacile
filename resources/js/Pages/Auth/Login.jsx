@@ -1,5 +1,5 @@
 import InputError from '@/Components/InputError';
-import { Head, useForm } from '@inertiajs/react';
+import { Head, Link, useForm } from '@inertiajs/react';
 
 export default function Login() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -26,19 +26,33 @@ export default function Login() {
             >
                 <div className="h-full w-full bg-black bg-opacity-50"></div>
             </section>
+            <Link
+                href={route('home')}
+                className="absolute right-3 top-3 flex flex-col items-center justify-center"
+            >
+                <svg
+                    role="img"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-7 w-7 fill-black"
+                >
+                    <path d="M12 0a1.44 1.44 0 0 0-.947.399L.547 10.762a1.26 1.26 0 0 0-.342.808v11.138c0 .768.53 1.292 1.311 1.292h20.968c.78 0 1.311-.522 1.311-1.292V11.57a1.25 1.25 0 0 0-.34-.804L15.68 3.097h-.001L12.947.4A1.454 1.454 0 0 0 12 0Zm0 6.727 6.552 6.456v5.65H5.446v-5.65z" />
+                </svg>
+                <span className="text-sm font-medium">Home</span>
+            </Link>
             <section className="flex h-screen w-1/2 flex-col items-center justify-center gap-4 bg-white">
                 <form
                     onSubmit={submit}
                     className="flex w-96 flex-col gap-4 rounded-lg p-10"
                 >
-                    <h1 className="text-quaternary text-center text-3xl font-bold">
+                    <h1 className="text-center text-3xl font-bold text-quaternary">
                         Login
                     </h1>
                     <p className="text-center text-gray-700">
                         By logging in, you accept our terms and privacy policy.
                     </p>
                     <label htmlFor="email" className="flex flex-col">
-                        <span className="text-quaternary font-bold">Email</span>
+                        <span className="font-bold text-quaternary">Email</span>
                         <input
                             type="email"
                             name="email"
@@ -51,7 +65,7 @@ export default function Login() {
                         <InputError message={errors.email} className="mt-2" />
                     </label>
                     <label htmlFor="password" className="flex flex-col">
-                        <span className="text-quaternary font-bold">
+                        <span className="font-bold text-quaternary">
                             Password
                         </span>
                         <input
@@ -71,17 +85,31 @@ export default function Login() {
                     </label>
                     <button
                         type="submit"
-                        className="bg-sixth text-primary rounded-lg py-2 font-bold duration-300 hover:shadow-lg"
+                        className="rounded-lg bg-sixth py-2 font-bold text-primary duration-300 hover:shadow-lg"
                     >
                         {processing ? 'Submitting...' : 'Login'}
                     </button>
                     <div className="flex w-full flex-col gap-2">
                         <div className="flex w-full items-center space-x-2">
                             <hr className="w-full flex-grow border-black" />
-                            <span className="text-sm font-bold text-zinc-700 dark:text-zinc-700">
-                                OR
-                            </span>
+                            <img
+                                src="/assets/images/pig.png"
+                                width="25"
+                                alt="OR"
+                                draggable="false"
+                            />
                             <hr className="w-full flex-grow border-zinc-700" />
+                        </div>
+                        <div className="flex items-center justify-between">
+                            <span className="text-sm font-semibold text-sixth">
+                                Don't have account?
+                            </span>
+                            <Link
+                                href={route('register')}
+                                className="text-sm font-semibold text-sixth"
+                            >
+                                Register Here
+                            </Link>
                         </div>
                         <button className="border-input inline-flex h-10 w-full items-center justify-center whitespace-nowrap rounded-md border bg-[#4285F4] px-4 py-2 text-sm font-medium text-white duration-300 hover:shadow-lg">
                             <div className="flex items-center justify-center">
