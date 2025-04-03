@@ -21,6 +21,8 @@ export default {
                 tertiary: '#BCCCDC',
                 quaternary: '#4d4d4d',
                 sixth: '#5d708e',
+                seventh: '#385d81',
+                fifth: '#526980',
             },
         },
     },
