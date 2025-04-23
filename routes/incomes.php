@@ -10,6 +10,10 @@ Route::get('/history', function () {
     return Inertia::render('Dashboard');
 })->name('history');
 
+Route::get('/recurrent', function () {
+    return Inertia::render('Dashboard');
+})->name('recurring');
+
 Route::get('/categories', function () {
     return Inertia::render('Dashboard');
 })->name('categories');

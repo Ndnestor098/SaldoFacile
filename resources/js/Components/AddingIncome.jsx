@@ -25,7 +25,7 @@ export default function AddingIncome({ categories }) {
     }
     return (
         <>
-            <div className="flex flex-col items-center justify-center gap-1 bg-white p-6 shadow-sm">
+            <div className="flex flex-col items-center justify-center gap-1 bg-white p-6 shadow-sm dark:bg-gray-200">
                 <h1 className="text-2xl font-bold">Add Income</h1>
                 <p className="mt-2 text-black">
                     Manage your income records here.

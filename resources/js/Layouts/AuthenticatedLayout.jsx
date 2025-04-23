@@ -40,6 +40,7 @@ export default function AuthenticatedLayout({ children }) {
             route: 'incomes.index',
             subMenu: [
                 { name: 'History', route: 'incomes.history' },
+                { name: 'Recurring Incomes', route: 'incomes.recurring' },
                 { name: 'Categories', route: 'incomes.categories' },
             ],
         },
@@ -152,7 +153,7 @@ export default function AuthenticatedLayout({ children }) {
                 className={`sidebar-overlay fixed left-0 top-0 z-40 h-full w-full bg-black/50 ${menuOpen ? 'block' : 'hidden'}`}
                 onClick={() => setMenuOpen(!menuOpen)}
             ></div>
-            <main className="main min-h-screen w-full bg-gray-200 transition-all dark:bg-gray-300 md:ml-64 md:w-[calc(100%-256px)]">
+            <main className="main min-h-screen w-full bg-gray-200 transition-all dark:bg-gray-400 md:ml-64 md:w-[calc(100%-256px)]">
                 <div className="sticky left-0 top-0 z-30 flex items-center bg-[#f8f4f3] px-6 py-2 shadow-md shadow-black/5 dark:bg-gray-800">
                     <button
                         type="button"
