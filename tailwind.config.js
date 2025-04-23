@@ -23,6 +23,8 @@ export default {
                 sixth: '#5d708e',
                 seventh: '#385d81',
                 fifth: '#526980',
+                green_primary: '#BBD8A3',
+                red_primary: '#FF8383',
             },
         },
     },

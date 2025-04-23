@@ -1,18 +1,14 @@
+import AddingIncome from '@/Components/AddingIncome';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 
-export default function Index() {
+export default function Index({ categories }) {
     return (
         <>
-            <Head title="Dashboard" />
+            <Head title="Incomes" />
             <AuthenticatedLayout>
-                <section>
-                    <div>
-                        <h1 className="text-2xl font-bold">Incomes</h1>
-                        <p className="mt-2 text-gray-600">
-                            Manage your income records here.
-                        </p>
-                    </div>
+                <section className="relative">
+                    <AddingIncome categories={categories} />
                 </section>
                 <section></section>
             </AuthenticatedLayout>

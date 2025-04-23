@@ -1,11 +1,10 @@
 <?php
 
+use App\Http\Controllers\Income\IncomeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Incomes/Index');
-})->name('index');
+Route::get('/', [IncomeController::class, 'index'])->name('index');
 
 Route::get('/history', function () {
     return Inertia::render('Dashboard');
@@ -14,3 +13,5 @@ Route::get('/history', function () {
 Route::get('/categories', function () {
     return Inertia::render('Dashboard');
 })->name('categories');
+
+Route::post('/create', [IncomeController::class, 'store'])->name('store');
