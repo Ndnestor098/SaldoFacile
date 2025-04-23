@@ -1,4 +1,5 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
+import NavMenu from '@/Components/NavMenu';
 import { Link, usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 
@@ -66,80 +67,43 @@ export default function AuthenticatedLayout({ children }) {
                 <ul className="mt-4">
                     {/* ======================= Panel First ======================= */}
                     <span className="font-bold text-gray-400 dark:text-primary">
-                        ADMINISTER
+                        DASHBOARD
                     </span>
-                    <li
-                        className={
-                            url === '/dashboard'
-                                ? 'active group mb-1'
-                                : 'group mb-1'
-                        }
-                    >
-                        <Link
-                            href={route('dashboard')}
-                            className="flex items-center rounded-md px-4 py-2 font-semibold text-quaternary hover:bg-tertiary hover:text-black group-[.active]:bg-tertiary group-[.active]:text-black dark:text-primary"
-                        >
-                            <i className="ri-home-2-line mr-3 text-lg"></i>
-                            <span className="text-sm">Dashboard</span>
-                        </Link>
-                    </li>
-                    <li
-                        className={
-                            url === '/users'
-                                ? 'active group mb-1'
-                                : 'group mb-1'
-                        }
-                    >
-                        <Link
-                            href=""
-                            className="flex items-center rounded-md px-4 py-2 font-semibold text-quaternary hover:bg-tertiary hover:text-black group-[.active]:bg-tertiary group-[.active]:text-black dark:text-primary"
-                        >
-                            <i className="bx bx-user mr-3 text-lg"></i>
-                            <span className="text-sm">Users</span>
-                            <i className="ri-arrow-right-s-line ml-auto group-[.active]:rotate-90"></i>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                className="ri-arrow-right-s-line ml-auto size-4 group-[.active]:rotate-90"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="m8.25 4.5 7.5 7.5-7.5 7.5"
-                                />
-                            </svg>
-                        </Link>
-                        <ul className="mt-2 hidden pl-7 group-[.active]:block">
-                            <li className="mb-4">
-                                <Link
-                                    href=""
-                                    className="before:contents-[''] flex items-center text-sm text-gray-900 duration-150 before:mr-3 before:h-1 before:w-1 before:rounded-full before:bg-gray-300 hover:font-semibold hover:text-seventh dark:text-primary"
-                                >
-                                    All
-                                </Link>
-                            </li>
-                            <li className="mb-4">
-                                <Link
-                                    href=""
-                                    className="before:contents-[''] flex items-center text-sm text-gray-900 duration-150 before:mr-3 before:h-1 before:w-1 before:rounded-full before:bg-gray-300 hover:font-semibold hover:text-seventh dark:text-primary"
-                                >
-                                    Roles
-                                </Link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li className="group mb-1">
-                        <Link
-                            href=""
-                            className="flex items-center rounded-md px-4 py-2 font-semibold text-quaternary hover:bg-tertiary hover:text-black group-[.active]:bg-tertiary group-[.active]:text-black dark:text-primary"
-                        >
-                            <i className="bx bx-list-ul mr-3 text-lg"></i>
-                            <span className="text-sm">Activities</span>
-                        </Link>
-                    </li>
+                    {/* Menu Dashboard */}
+                    <NavMenu
+                        url={url}
+                        menu={{ name: 'Dashboard', route: 'dashboard' }}
+                    />
+                    {/* Income Menu */}
+                    <NavMenu
+                        url={url}
+                        menu={{ name: 'Incomes', route: 'incomes.index' }}
+                        subMenu={[
+                            {
+                                name: 'History',
+                                route: 'incomes.history',
+                            },
+                            {
+                                name: 'Categories',
+                                route: 'incomes.categories',
+                            },
+                        ]}
+                    />
+                    {/* Expense Menu */}
+                    <NavMenu
+                        url={url}
+                        menu={{ name: 'Expenses', route: 'expenses.index' }}
+                        subMenu={[
+                            {
+                                name: 'History',
+                                route: 'expenses.history',
+                            },
+                            {
+                                name: 'Categories',
+                                route: 'expenses.categories',
+                            },
+                        ]}
+                    />
                     {/* ======================= Panel Second ======================= */}
                     <span className="font-bold text-gray-400 dark:text-primary">
                         BLOG
