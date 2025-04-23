@@ -32,7 +32,7 @@ export default function AuthenticatedLayout({ children }) {
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
             <div
-                className={`sidebar-menu fixed left-0 top-0 z-50 h-full w-64 bg-[#f8f4f3] p-4 transition-transform md:block dark:bg-gray-800 ${menuOpen ? 'block' : 'hidden'}`}
+                className={`sidebar-menu fixed left-0 top-0 z-50 h-full w-64 bg-[#f8f4f3] p-4 transition-transform dark:bg-gray-800 md:block ${menuOpen ? 'block' : 'hidden'}`}
             >
                 <button
                     className="cursor-pointer"
@@ -43,7 +43,7 @@ export default function AuthenticatedLayout({ children }) {
                         viewBox="0 0 24 24"
                         strokeWidth="1.5"
                         stroke="currentColor"
-                        className="size-6 fill-quaternary md:hidden dark:text-primary"
+                        className="size-6 fill-quaternary dark:text-primary md:hidden"
                     >
                         <path
                             strokeLinecap="round"
@@ -204,7 +204,7 @@ export default function AuthenticatedLayout({ children }) {
                 className={`sidebar-overlay fixed left-0 top-0 z-40 h-full w-full bg-black/50 ${menuOpen ? 'block' : 'hidden'}`}
                 onClick={() => setMenuOpen(!menuOpen)}
             ></div>
-            <main className="main min-h-screen w-full bg-gray-200 transition-all md:ml-64 md:w-[calc(100%-256px)]">
+            <main className="main min-h-screen w-full bg-gray-200 transition-all dark:bg-gray-300 md:ml-64 md:w-[calc(100%-256px)]">
                 <div className="sticky left-0 top-0 z-30 flex items-center bg-[#f8f4f3] px-6 py-2 shadow-md shadow-black/5 dark:bg-gray-800">
                     <button
                         type="button"
@@ -216,7 +216,7 @@ export default function AuthenticatedLayout({ children }) {
                             viewBox="0 0 24 24"
                             strokeWidth="1.5"
                             stroke="currentColor"
-                            className="size-6 fill-quaternary md:hidden dark:text-primary"
+                            className="size-6 fill-quaternary dark:text-primary md:hidden"
                         >
                             <path
                                 strokeLinecap="round"
