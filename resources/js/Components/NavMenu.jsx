@@ -49,7 +49,7 @@ export default function NavMenu({ url, menu, subMenu = false }) {
                                             menu.name.toLowerCase() +
                                             '/' +
                                             item.name.toLowerCase()
-                                            ? 'text-lg font-bold text-white hover:text-white'
+                                            ? 'text-lg font-bold text-gray-900 dark:text-primary'
                                             : '')
                                     }
                                 >

@@ -30,6 +30,29 @@ export default function AuthenticatedLayout({ children }) {
         localStorage.setItem('theme', theme);
     }, [theme]);
 
+    const dashboardMenu = [
+        {
+            name: 'Dashboard',
+            route: 'dashboard',
+        },
+        {
+            name: 'Incomes',
+            route: 'incomes.index',
+            subMenu: [
+                { name: 'History', route: 'incomes.history' },
+                { name: 'Categories', route: 'incomes.categories' },
+            ],
+        },
+        {
+            name: 'Expenses',
+            route: 'expenses.index',
+            subMenu: [
+                { name: 'History', route: 'expenses.history' },
+                { name: 'Categories', route: 'expenses.categories' },
+            ],
+        },
+    ];
+
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
             <div
@@ -70,53 +93,14 @@ export default function AuthenticatedLayout({ children }) {
                         DASHBOARD
                     </span>
                     {/* Menu Dashboard */}
-                    <NavMenu
-                        url={url}
-                        menu={{ name: 'Dashboard', route: 'dashboard' }}
-                    />
-                    {/* Income Menu */}
-                    <NavMenu
-                        url={url}
-                        menu={{ name: 'Incomes', route: 'incomes.index' }}
-                        subMenu={[
-                            {
-                                name: 'History',
-                                route: 'incomes.history',
-                            },
-                            {
-                                name: 'Categories',
-                                route: 'incomes.categories',
-                            },
-                        ]}
-                    />
-                    {/* Expense Menu */}
-                    <NavMenu
-                        url={url}
-                        menu={{ name: 'Expenses', route: 'expenses.index' }}
-                        subMenu={[
-                            {
-                                name: 'History',
-                                route: 'expenses.history',
-                            },
-                            {
-                                name: 'Categories',
-                                route: 'expenses.categories',
-                            },
-                        ]}
-                    />
-                    {/* ======================= Panel Second ======================= */}
-                    <span className="font-bold text-gray-400 dark:text-primary">
-                        BLOG
-                    </span>
-                    <li className="group mb-1">
-                        <Link
-                            href=""
-                            className="flex items-center rounded-md px-4 py-2 font-semibold text-quaternary hover:bg-tertiary hover:text-black group-[.active]:bg-tertiary group-[.active]:text-black dark:text-primary"
-                        >
-                            <i className="bx bx-archive mr-3 text-lg"></i>
-                            <span className="text-sm">Archive</span>
-                        </Link>
-                    </li>
+                    {dashboardMenu.map((item, index) => (
+                        <NavMenu
+                            key={index}
+                            url={url}
+                            menu={item}
+                            subMenu={item.subMenu}
+                        />
+                    ))}
                     {/* ======================= Panel Tertiary ======================= */}
                     <span className="font-bold text-gray-400 dark:text-primary">
                         PERSONAL
