@@ -17,7 +17,10 @@ class IncomeController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $incomes = Income::with(['category:id,name'])->where('user_id', Auth::id())->get();
+        $incomes = Income::with(['category:id,name'])
+            ->where('user_id', Auth::id())
+            ->orderBy('date', 'desc')
+            ->get();
 
         return Inertia::render('Incomes/Index', compact('categories', 'incomes'));
     }

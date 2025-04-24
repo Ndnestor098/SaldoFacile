@@ -476,7 +476,7 @@ export default function AuthenticatedLayout({ children }) {
                         </li>
                     </ul>
                 </div>
-                <div className="py-12">
+                <div className="pt-12">
                     <div className="max-w-8xl mx-2 sm:px-6 md:mx-auto lg:px-8">
                         {children}
                     </div>

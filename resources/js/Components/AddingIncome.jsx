@@ -32,7 +32,7 @@ export default function AddingIncome({ categories }) {
                 </p>
                 <button
                     onClick={() => setView(!view)}
-                    className="bg-green_primary mt-2 max-w-40 rounded-md px-3 py-1 font-semibold text-quaternary"
+                    className="mt-2 max-w-40 rounded-md bg-green_primary px-3 py-1 font-semibold text-quaternary"
                 >
                     Add Income
                 </button>
@@ -190,7 +190,7 @@ export default function AddingIncome({ categories }) {
                                 )}
                             </label>
                             <button
-                                className="bg-green_primary mt-4 w-full rounded-md px-4 py-2 font-semibold text-quaternary hover:bg-white"
+                                className="mt-4 w-full rounded-md bg-green_primary px-4 py-2 font-semibold text-quaternary hover:bg-white"
                                 type="submit"
                                 disabled={processing}
                                 style={{
