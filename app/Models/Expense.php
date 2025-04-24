@@ -30,4 +30,28 @@ class Expense extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function scopeAmount($query, $amount)
+    {
+        if($amount){
+            return $query->where('amount', '>=', $amount);
+        }
+        return $query;
+    }
+
+    public function scopeDate($query, $date)
+    {
+        if($date){
+            return $query->where('date', 'LIKE', "%$date%");
+        }
+        return $query;
+    }
+
+    public function scopeCategory($query, $category)
+    {
+        if($category){
+            return $query->where('category', $category);
+        }
+        return $query;
+    }
 }

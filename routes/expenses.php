@@ -10,9 +10,7 @@ Route::get('/recurring', function () {
     return Inertia::render('Dashboard');
 })->name('recurring');
 
-Route::get('/history', function () {
-    return Inertia::render('Dashboard');
-})->name('history');
+Route::get('/history', [ExpenseController::class, 'history'])->name('history');
 
 Route::get('/categories', function () {
     return Inertia::render('Dashboard');

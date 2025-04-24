@@ -25,12 +25,19 @@ class ExpenseController extends Controller
         return Inertia::render('Expenses/Index', compact('categories', 'expenses'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function history()
     {
-        //
+        $categories = Category::all();
+        $expenses = Expense::with(['category:id,name'])
+            ->amount(request('amount'))
+            ->date(request('date'))
+            ->category(request('category'))
+            ->where('user_id', Auth::id())
+            ->orderBy('date', 'desc')
+            ->paginate(10)
+            ->withQueryString();
+
+        return Inertia::render('Expenses/History', compact('categories', 'expenses'));
     }
 
     /**

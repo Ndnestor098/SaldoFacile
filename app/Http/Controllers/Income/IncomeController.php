@@ -20,17 +20,25 @@ class IncomeController extends Controller
         $incomes = Income::with(['category:id,name'])
             ->where('user_id', Auth::id())
             ->orderBy('date', 'desc')
+            ->limit(5)
             ->get();
 
         return Inertia::render('Incomes/Index', compact('categories', 'incomes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function history()
     {
-        //
+        $categories = Category::all();
+        $incomes = Income::with(['category:id,name'])
+            ->amount(request('amount'))
+            ->date(request('date'))
+            ->category(request('category'))
+            ->where('user_id', Auth::id())
+            ->orderBy('date', 'desc')
+            ->paginate(10)
+            ->withQueryString();
+
+        return Inertia::render('Incomes/History', compact('categories', 'incomes'));
     }
 
     /**
