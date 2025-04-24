@@ -39,7 +39,7 @@ export default function AddingIncome({ categories }) {
             </div>
             {view && (
                 <div className="fixed inset-0 z-10 flex items-center justify-center before:absolute before:inset-0 before:bg-black before:opacity-50 before:content-['']">
-                    <div className="relative z-50 w-full max-w-xl rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800 dark:text-gray-200">
+                    <div className="relative z-50 m-1 w-full rounded-lg bg-white p-4 shadow-lg dark:bg-gray-800 dark:text-gray-200 sm:max-w-xl sm:p-6">
                         <div
                             onClick={() => setView(!view)}
                             className="absolute right-4 top-4 cursor-pointer"

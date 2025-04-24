@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\Expense\ExpenseController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
+Route::get('/', [ExpenseController::class, 'index'])->name('index');
+
+Route::get('/recurring', function () {
     return Inertia::render('Dashboard');
-})->name('index');
+})->name('recurring');
 
 Route::get('/history', function () {
     return Inertia::render('Dashboard');
@@ -14,3 +17,5 @@ Route::get('/history', function () {
 Route::get('/categories', function () {
     return Inertia::render('Dashboard');
 })->name('categories');
+
+Route::post('/create', [ExpenseController::class, 'store'])->name('store');

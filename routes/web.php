@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Category;
+use App\Models\Expense;
+use App\Models\Income;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -10,7 +14,17 @@ Route::get('/', function () {
 })->name("home");
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    $categories = Category::all();
+    $expenses = Expense::with(['category:id,name'])
+        ->where('user_id', Auth::id())
+        ->orderBy('date', 'desc')
+        ->get();
+    $incomes = Income::with(['category:id,name'])
+        ->where('user_id', Auth::id())
+        ->orderBy('date', 'desc')
+        ->get();
+
+    return Inertia::render('Dashboard', compact('categories', 'expenses', 'incomes'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 

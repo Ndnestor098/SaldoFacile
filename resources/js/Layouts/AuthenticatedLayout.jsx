@@ -39,8 +39,8 @@ export default function AuthenticatedLayout({ children }) {
             name: 'Incomes',
             route: 'incomes.index',
             subMenu: [
-                { name: 'History', route: 'incomes.history' },
                 { name: 'Recurring Incomes', route: 'incomes.recurring' },
+                { name: 'History', route: 'incomes.history' },
                 { name: 'Categories', route: 'incomes.categories' },
             ],
         },
@@ -48,6 +48,7 @@ export default function AuthenticatedLayout({ children }) {
             name: 'Expenses',
             route: 'expenses.index',
             subMenu: [
+                { name: 'Recurring Expenses', route: 'expenses.recurring' },
                 { name: 'History', route: 'expenses.history' },
                 { name: 'Categories', route: 'expenses.categories' },
             ],

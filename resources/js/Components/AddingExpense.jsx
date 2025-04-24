@@ -3,47 +3,43 @@ import { useState } from 'react';
 
 export default function AddingExpense({ categories }) {
     let [view, setView] = useState(false);
-    const { data, setData, post, processing, errors } = useForm({
-        amount: '',
-        description: '',
-        source: '',
-        payment_method: '',
-        category_id: '',
-    });
+    const { data, setData, post, processing, errors, clearErrors, reset } =
+        useForm({
+            amount: '',
+            description: '',
+            source: '',
+            payment_method: '',
+            category_id: '',
+        });
 
     function handleSubmit(e) {
         e.preventDefault();
-        post(route('expense.store'), {
+        post(route('expenses.store'), {
             data,
             onSuccess: () => {
                 setView(false);
-                setData({
-                    amount: '',
-                    description: '',
-                    source: '',
-                    payment_method: '',
-                    category_id: '',
-                });
+                reset();
+                clearErrors();
             },
         });
     }
     return (
         <>
-            <div className="flex flex-col items-center justify-center gap-1 bg-white p-6 shadow-sm">
+            <div className="flex flex-col items-center justify-center gap-1 bg-white p-6 shadow-sm dark:bg-gray-200">
                 <h1 className="text-2xl font-bold">Add Expense</h1>
                 <p className="mt-2 text-black">
                     Manage your income records here.
                 </p>
                 <button
                     onClick={() => setView(!view)}
-                    className="bg-red mt-2 max-w-40 rounded-md px-3 py-1 font-semibold text-white hover:bg-quaternary"
+                    className="mt-2 max-w-40 rounded-md bg-red_primary px-3 py-1 font-semibold text-white hover:bg-quaternary"
                 >
                     Add Expense
                 </button>
             </div>
             {view && (
                 <div className="fixed inset-0 z-10 flex items-center justify-center before:absolute before:inset-0 before:bg-black before:opacity-50 before:content-['']">
-                    <div className="relative z-50 w-full max-w-xl rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800 dark:text-gray-200">
+                    <div className="relative z-50 m-1 w-full rounded-lg bg-white p-4 shadow-lg dark:bg-gray-800 dark:text-gray-200 sm:max-w-xl sm:p-6">
                         <div
                             onClick={() => setView(!view)}
                             className="absolute right-4 top-4 cursor-pointer"
@@ -171,7 +167,7 @@ export default function AddingExpense({ categories }) {
                                         data.category_id ? data.category_id : ''
                                     }
                                     onChange={(e) =>
-                                        setData('category', e.target.value)
+                                        setData('category_id', e.target.value)
                                     }
                                 >
                                     <option value="" disabled>
@@ -194,7 +190,7 @@ export default function AddingExpense({ categories }) {
                                 )}
                             </label>
                             <button
-                                className="bg-red mt-4 w-full rounded-md px-4 py-2 font-semibold text-quaternary hover:bg-white"
+                                className="mt-4 w-full rounded-md bg-red_primary px-4 py-2 font-semibold text-white hover:bg-white hover:text-quaternary"
                                 type="submit"
                             >
                                 {processing ? 'Submiting...' : 'Send'}

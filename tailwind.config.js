@@ -24,7 +24,7 @@ export default {
                 seventh: '#385d81',
                 fifth: '#526980',
                 green_primary: '#BBD8A3',
-                red_primary: '#FF8383',
+                red_primary: '#BF3131',
             },
         },
     },
