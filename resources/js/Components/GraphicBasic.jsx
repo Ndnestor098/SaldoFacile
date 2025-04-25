@@ -11,6 +11,14 @@ import {
 } from 'recharts';
 
 export default function GraphicBasic({ data, type }) {
+    if (!data) {
+        return (
+            <div className="flex h-full w-full items-center justify-center">
+                <span>No data available</span>
+            </div>
+        );
+    }
+
     const arrayGraphic = [
         {
             name: 'January',

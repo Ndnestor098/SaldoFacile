@@ -17,6 +17,9 @@ class RecurrentExpense extends Model
         'start_date',
         'end_date',
         'active',
+        'date',
+        'payment_date',
+        'source',
     ];
 
     public function user()

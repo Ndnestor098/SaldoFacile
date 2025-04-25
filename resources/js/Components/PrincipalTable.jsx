@@ -3,11 +3,26 @@ import { useState, useEffect } from 'react';
 export default function PrincipalTable({ data, type }) {
     const [active, setActive] = useState({
         payment_method: false,
+        frequency: false,
+        payment_date: false,
+        end_date: false,
     });
-
+    console.log(data);
     useEffect(() => {
         if (data.some((item) => item.payment_method)) {
-            setActive('payment_method', true);
+            setActive((prev) => ({ ...prev, payment_method: true }));
+        }
+
+        if (data.some((item) => item.frequency)) {
+            setActive((prev) => ({ ...prev, frequency: true }));
+        }
+
+        if (data.some((item) => item.payment_date)) {
+            setActive((prev) => ({ ...prev, payment_date: true }));
+        }
+
+        if (data.some((item) => item.end_date)) {
+            setActive((prev) => ({ ...prev, end_date: true }));
         }
     }, [data]);
 
@@ -33,15 +48,24 @@ export default function PrincipalTable({ data, type }) {
                                 <th className="border border-quaternary bg-gray-200 px-4 py-2 dark:bg-gray-400">
                                     Source
                                 </th>
-                                <th className="border border-quaternary bg-gray-200 px-4 py-2 dark:bg-gray-400">
-                                    Currency
-                                </th>
-                                <th className="border border-quaternary bg-gray-200 px-4 py-2 dark:bg-gray-400">
-                                    Description
-                                </th>
-                                {active[0] && (
+                                {active.payment_method == true && (
                                     <th className="border border-quaternary bg-gray-200 px-4 py-2 dark:bg-gray-400">
                                         Payment Method
+                                    </th>
+                                )}
+                                {active.frequency == true && (
+                                    <th className="border border-quaternary bg-gray-200 px-4 py-2 dark:bg-gray-400">
+                                        Frequency
+                                    </th>
+                                )}
+                                {active.payment_date == true && (
+                                    <th className="border border-quaternary bg-gray-200 px-4 py-2 dark:bg-gray-400">
+                                        Payment Date
+                                    </th>
+                                )}
+                                {active.end_date == true && (
+                                    <th className="border border-quaternary bg-gray-200 px-4 py-2 dark:bg-gray-400">
+                                        End Date
                                     </th>
                                 )}
                             </tr>
@@ -61,16 +85,26 @@ export default function PrincipalTable({ data, type }) {
                                     <td className="border border-quaternary bg-white px-4 py-2 dark:bg-gray-300">
                                         {item.source || 'No source'}
                                     </td>
-                                    <td className="border border-quaternary bg-white px-4 py-2 dark:bg-gray-300">
-                                        {item.currency || 'No currency'}
-                                    </td>
-                                    <td className="border border-quaternary bg-white px-4 py-2 dark:bg-gray-300">
-                                        {item.description || 'No description'}
-                                    </td>
-                                    {active[0] && (
+                                    {active.payment_method && (
                                         <td className="border border-quaternary bg-white px-4 py-2 dark:bg-gray-300">
                                             {item.payment_method ||
                                                 'No Payment Method'}
+                                        </td>
+                                    )}
+                                    {active.frequency && (
+                                        <td className="border border-quaternary bg-white px-4 py-2 dark:bg-gray-300">
+                                            {item.frequency || 'No Specified'}
+                                        </td>
+                                    )}
+                                    {active.payment_date && (
+                                        <td className="border border-quaternary bg-white px-4 py-2 dark:bg-gray-300">
+                                            {item.payment_date ||
+                                                'Not specified'}
+                                        </td>
+                                    )}
+                                    {active.end_date && (
+                                        <td className="border border-quaternary bg-white px-4 py-2 dark:bg-gray-300">
+                                            {item.end_date || 'Not specified'}
                                         </td>
                                     )}
                                 </tr>

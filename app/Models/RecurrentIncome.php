@@ -17,6 +17,9 @@ class RecurrentIncome extends Model
         'start_date',
         'end_date',
         'active',
+        'payment_date',
+        'date',
+        'source',
     ];
 
     public function user()

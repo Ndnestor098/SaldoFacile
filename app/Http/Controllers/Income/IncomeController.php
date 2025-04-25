@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Income;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Income;
+use App\Models\RecurrentIncome;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -49,9 +50,6 @@ class IncomeController extends Controller
         $request->validate([
             'amount' => 'required|numeric|min:0',
             'category_id' => 'required|exists:categories,id',
-            'source' => 'string|max:255',
-            'description' => 'string|max:255',
-            'payment_method' => 'string|max:255',
         ]);
         
         Income::create([
