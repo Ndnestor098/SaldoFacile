@@ -46,12 +46,4 @@ class Expense extends Model
         }
         return $query;
     }
-
-    public function scopeCategory($query, $category)
-    {
-        if($category){
-            return $query->where('category', $category);
-        }
-        return $query;
-    }
 }

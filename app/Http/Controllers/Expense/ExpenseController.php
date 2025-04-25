@@ -21,18 +21,23 @@ class ExpenseController extends Controller
         $expenses = Expense::with(['category:id,name'])
             ->where('user_id', Auth::id())
             ->orderBy('date', 'desc')
+            ->limit(5)
             ->get();
 
         return Inertia::render('Expenses/Index', compact('categories', 'expenses'));
     }
 
-    public function history()
+    public function history(Request $request)
     {
         $categories = Category::all();
         $expenses = Expense::with(['category:id,name'])
-            ->amount(request('amount'))
-            ->date(request('date'))
-            ->category(request('category'))
+            ->when($request->filled('category_id'), function ($query) use ($request) {
+                $query->whereHas('category', function ($q) use ($request) {
+                    $q->where('id', $request->category_id);
+                });
+            })
+            ->amount($request->amount)
+            ->date($request->date)
             ->where('user_id', Auth::id())
             ->orderBy('date', 'desc')
             ->paginate(10)
@@ -60,9 +65,6 @@ class ExpenseController extends Controller
 
         return to_route('expenses.index');
     }
-
-    
-
  
     public function update(Request $request, Expense $expense)
     {

@@ -43,8 +43,8 @@ export default function AddingRecurrentIncome({ categories }) {
                 </button>
             </div>
             {view && (
-                <div className="fixed inset-0 z-40 flex items-center justify-center before:absolute before:inset-0 before:bg-black before:opacity-50 before:content-['']">
-                    <div className="relative z-50 m-1 w-full rounded-lg bg-white p-4 shadow-lg dark:bg-gray-800 dark:text-gray-200 sm:max-w-xl sm:p-6">
+                <div className="fixed inset-0 z-40 flex items-center justify-center overflow-auto before:absolute before:inset-0 before:bg-black before:opacity-50 before:content-['']">
+                    <div className="relative z-50 mx-1 my-2 max-h-screen w-full overflow-y-auto rounded-lg bg-white p-4 shadow-lg dark:bg-gray-800 dark:text-gray-200 sm:h-auto sm:max-w-xl sm:p-6">
                         <div
                             onClick={() => setView(!view)}
                             className="absolute right-4 top-4 cursor-pointer"
@@ -68,7 +68,7 @@ export default function AddingRecurrentIncome({ categories }) {
                         </h1>
                         <form
                             onSubmit={handleSubmit}
-                            className="flex flex-col gap-4"
+                            className="flex h-full flex-col gap-4"
                         >
                             <label className="mb-2 block">
                                 Amount:
@@ -329,7 +329,7 @@ export default function AddingRecurrentIncome({ categories }) {
                                     </span>
                                 )}
                             </label>
-                            <label>
+                            <label className="mb-2 block">
                                 Category:
                                 <select
                                     className="w-full rounded-md border border-gray-300 px-4 py-2 text-quaternary focus:border-blue-500 focus:outline-none"

@@ -27,13 +27,17 @@ class IncomeController extends Controller
         return Inertia::render('Incomes/Index', compact('categories', 'incomes'));
     }
 
-    public function history()
+    public function history(Request $request)
     {
         $categories = Category::all();
         $incomes = Income::with(['category:id,name'])
-            ->amount(request('amount'))
-            ->date(request('date'))
-            ->category(request('category'))
+            ->when($request->filled('category_id'), function ($query) use ($request) {
+                $query->whereHas('category', function ($q) use ($request) {
+                    $q->where('id', $request->category_id);
+                });
+            })
+            ->amount($request->amount)
+            ->date($request->date)
             ->where('user_id', Auth::id())
             ->orderBy('date', 'desc')
             ->paginate(10)
@@ -94,6 +98,7 @@ class IncomeController extends Controller
      */
     public function destroy(Income $incomes)
     {
-        //
+        $incomes->delete();
+        return back();
     }
 }

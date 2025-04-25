@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 
 export default function PrincipalTable({ data, type }) {
@@ -7,7 +8,7 @@ export default function PrincipalTable({ data, type }) {
         payment_date: false,
         end_date: false,
     });
-    console.log(data);
+
     useEffect(() => {
         if (data.some((item) => item.payment_method)) {
             setActive((prev) => ({ ...prev, payment_method: true }));
@@ -25,11 +26,18 @@ export default function PrincipalTable({ data, type }) {
             setActive((prev) => ({ ...prev, end_date: true }));
         }
     }, [data]);
-
+    console.log(type + '.destroy');
     return (
         <div className="flex h-full w-full flex-col items-center justify-center">
             <h1 className="text-2xl font-bold">
-                {type.charAt(0).toUpperCase() + type.slice(1)}
+                {type.includes('.')
+                    ? type.split('.').map((t, i) => (
+                          <span key={i}>
+                              {t.charAt(0).toUpperCase() + t.slice(1)}
+                              {i < type.split('.').length - 1 && '  '}
+                          </span>
+                      ))
+                    : type.charAt(0).toUpperCase() + type.slice(1)}
             </h1>
             <div className="w-full overflow-x-auto">
                 {data.length > 0 ? (
@@ -68,6 +76,9 @@ export default function PrincipalTable({ data, type }) {
                                         End Date
                                     </th>
                                 )}
+                                <th className="border border-quaternary bg-gray-200 px-4 py-2 dark:bg-gray-400">
+                                    Delete
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -107,6 +118,19 @@ export default function PrincipalTable({ data, type }) {
                                             {item.end_date || 'Not specified'}
                                         </td>
                                     )}
+                                    <td className="border border-quaternary bg-red_primary px-4 py-2 text-center font-bold text-white">
+                                        <Link
+                                            href={route(
+                                                type + '.destroy',
+                                                item.id,
+                                            )}
+                                            method="delete"
+                                            as="button"
+                                            className="h-full w-full"
+                                        >
+                                            Delete
+                                        </Link>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

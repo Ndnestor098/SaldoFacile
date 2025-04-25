@@ -111,6 +111,7 @@ class RecurrentIncomeController extends Controller
      */
     public function destroy(RecurrentIncome $recurrentIncome)
     {
-        //
+        $recurrentIncome->delete();
+        return back();
     }
 }

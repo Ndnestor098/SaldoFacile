@@ -16,7 +16,7 @@ export default function Recurring({ categories, expenses }) {
                     <GraphicBasic data={expenses} type="expenses" />
                 </section>
                 <section className="relative mt-2 bg-white p-2 dark:bg-gray-200">
-                    <PrincipalTable data={expenses} type="expenses" />
+                    <PrincipalTable data={expenses} type="expenses.recurring" />
                 </section>
             </AuthenticatedLayout>
         </>
