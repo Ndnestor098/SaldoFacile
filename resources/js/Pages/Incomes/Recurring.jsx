@@ -2,9 +2,23 @@ import AddingRecurrentIncome from '@/Components/AddingRecurrentIncome';
 import GraphicBasic from '@/Components/GraphicBasic';
 import PrincipalTable from '@/Components/PrincipalTable';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
+import { useEffect } from 'react';
+import swal from 'sweetalert';
 
 export default function Recurring({ categories, incomes }) {
+    const { flash } = usePage().props;
+
+    useEffect(() => {
+        if (flash.success) {
+            swal({
+                title: flash.success.title,
+                text: flash.success.text,
+                icon: flash.success.icon,
+            });
+        }
+    }, [flash.success]);
+
     return (
         <>
             <Head title="Recurrent - Incomes" />

@@ -26,7 +26,7 @@ export default function PrincipalTable({ data, type }) {
             setActive((prev) => ({ ...prev, end_date: true }));
         }
     }, [data]);
-    console.log(type + '.destroy');
+
     return (
         <div className="flex h-full w-full flex-col items-center justify-center">
             <h1 className="text-2xl font-bold">

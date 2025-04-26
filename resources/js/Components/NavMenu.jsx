@@ -1,6 +1,8 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 
 export default function NavMenu({ url, menu, subMenu = false }) {
+    const { url: currentUrl } = usePage();
+
     return (
         <>
             <li
@@ -38,25 +40,30 @@ export default function NavMenu({ url, menu, subMenu = false }) {
                 </Link>
                 <ul className="mt-2 hidden pl-7 group-[.active]:block">
                     {subMenu != false &&
-                        subMenu.map((item, index) => (
-                            <li className="mb-4" key={'submenu' + index}>
-                                <Link
-                                    href={route(item.route)}
-                                    className={
-                                        "before:contents-[''] flex items-center text-sm text-gray-900 duration-150 before:mr-3 before:h-1 before:w-1 before:rounded-full before:bg-gray-300 hover:font-semibold hover:text-seventh dark:text-primary" +
-                                        (url ===
-                                        '/' +
-                                            menu.name.toLowerCase() +
-                                            '/' +
-                                            item.name.toLowerCase()
-                                            ? 'text-lg font-bold text-gray-900 dark:text-primary'
-                                            : '')
-                                    }
-                                >
-                                    {item.name}
-                                </Link>
-                            </li>
-                        ))}
+                        subMenu.map((item, index) => {
+                            const verifyUrl = currentUrl.split('/');
+                            const url = route(item.route, {}, false);
+                            const isActive =
+                                verifyUrl.length === 2
+                                    ? false
+                                    : url.includes(currentUrl);
+
+                            return (
+                                <li className="mb-4" key={'submenu' + index}>
+                                    <Link
+                                        href={route(item.route)}
+                                        className={
+                                            "before:contents-[''] flex items-center text-sm text-gray-900 duration-150 before:mr-3 before:h-1 before:w-1 before:rounded-full before:bg-gray-300 hover:font-semibold hover:text-seventh dark:text-primary" +
+                                            (isActive
+                                                ? 'text-lg font-bold text-gray-900 dark:text-primary'
+                                                : '')
+                                        }
+                                    >
+                                        {item.name}
+                                    </Link>
+                                </li>
+                            );
+                        })}
                 </ul>
             </li>
         </>

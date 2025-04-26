@@ -66,6 +66,12 @@ class IncomeController extends Controller
             'date' => now(),
         ]);
 
+        session()->flash('success', [
+            'title' => 'Success',
+            'text' => 'Income added successfully.',
+            'icon' => 'success',
+        ]);
+
         return to_route('incomes.index');
     }
 
@@ -99,6 +105,13 @@ class IncomeController extends Controller
     public function destroy(Income $incomes)
     {
         $incomes->delete();
+
+        session()->flash('success', [
+            'title' => 'Success',
+            'text' => 'Income deleted successfully.',
+            'icon' => 'success',
+        ]);
+        
         return back();
     }
 }

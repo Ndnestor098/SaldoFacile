@@ -63,6 +63,12 @@ class ExpenseController extends Controller
             'date' => now(),
         ]);
 
+        session()->flash('success', [
+            'title' => 'Success',
+            'text' => 'Expense added successfully.',
+            'icon' => 'success',
+        ]);
+
         return to_route('expenses.index');
     }
  
@@ -74,6 +80,13 @@ class ExpenseController extends Controller
     public function destroy(Expense $expense)
     {
         $expense->delete();
+
+        session()->flash('success', [
+            'title' => 'Success',
+            'text' => 'Expense deleted successfully.',
+            'icon' => 'success',
+        ]);
+
         return back();
     }
 }

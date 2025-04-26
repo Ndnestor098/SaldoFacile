@@ -77,6 +77,12 @@ class RecurrentExpenseController extends Controller
             'date' => now(),
         ]);
 
+        session()->flash('success', [
+            'title' => 'Success',
+            'text' => 'Recurrent Expense added successfully.',
+            'icon' => 'success',
+        ]);
+
         return to_route('expenses.recurring');
     }
 
@@ -110,6 +116,13 @@ class RecurrentExpenseController extends Controller
     public function destroy(RecurrentExpense $recurrentExpense)
     {
         $recurrentExpense->delete();
+        
+        session()->flash('success', [
+            'title' => 'Success',
+            'text' => 'Recurrent Expense deleted successfully.',
+            'icon' => 'success',
+        ]);
+
         return back();
     }
 }

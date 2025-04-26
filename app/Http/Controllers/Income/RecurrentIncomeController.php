@@ -79,6 +79,12 @@ class RecurrentIncomeController extends Controller
             'date' => now(),
         ]);
 
+        session()->flash('success', [
+            'title' => 'Success',
+            'text' => 'Recurrent Income added successfully.',
+            'icon' => 'success',
+        ]);
+
         return to_route('incomes.recurring');
     }
 
@@ -112,6 +118,13 @@ class RecurrentIncomeController extends Controller
     public function destroy(RecurrentIncome $recurrentIncome)
     {
         $recurrentIncome->delete();
+        
+        session()->flash('success', [
+            'title' => 'Success',
+            'text' => 'Recurrent Income deleted successfully.',
+            'icon' => 'success',
+        ]);
+
         return back();
     }
 }
