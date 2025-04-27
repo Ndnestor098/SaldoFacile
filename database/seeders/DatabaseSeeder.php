@@ -22,7 +22,10 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('test'),
         ]);
 
-        Category::factory(10)->create();
+        $this->call([
+            IconSeeder::class,
+            CategorySeeder::class,
+        ]);
 
         Income::factory(10)->create();
         Expense::factory(10)->create();

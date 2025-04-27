@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Expense\CategoryController;
 use App\Http\Controllers\Expense\ExpenseController;
 use App\Http\Controllers\Expense\RecurrentExpenseController;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +16,6 @@ Route::delete('/recurrent/destroy/{recurrentExpense}', [RecurrentExpenseControll
 
 Route::get('/history', [ExpenseController::class, 'history'])->name('history');
 
-Route::get('/categories', function () {
-    return Inertia::render('Dashboard');
-})->name('categories');
+Route::get('/category', [CategoryController::class, 'index'])->name('category');
+Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');

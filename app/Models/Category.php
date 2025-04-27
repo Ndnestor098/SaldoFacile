@@ -12,6 +12,14 @@ class Category extends Model
 
     protected $fillable = [
         'name',
+        'icon_id',
+        'text_color',
+        'background_color',
         'type',
     ];
+
+    public function icon()
+    {
+        return $this->belongsTo(Icon::class);
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Income\CategoryController;
 use App\Http\Controllers\Income\IncomeController;
 use App\Http\Controllers\Income\RecurrentIncomeController;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +16,6 @@ Route::delete('/recurring/destroy/{recurrentIncome}', [RecurrentIncomeController
 
 Route::get('/history', [IncomeController::class, 'history'])->name('history');
 
-Route::get('/categories', function () {
-    return Inertia::render('Dashboard');
-})->name('categories');
+Route::get('/category', [CategoryController::class, 'index'])->name('category');
+Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');

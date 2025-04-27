@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('type', ['income', 'expense']);
+            $table->enum('type', ['incomes', 'expenses', 'recurrent_expenses', 'recurrent_incomes']);
+            $table->string('text_color')->default('#000000');
+            $table->string('background_color')->default('#ffffff');
+            $table->unsignedBigInteger('icon_id');
+            $table->foreign('icon_id')->references('id')->on('icons')->onDelete('cascade');
             $table->timestamps();
         });
     }

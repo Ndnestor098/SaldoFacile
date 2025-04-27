@@ -127,6 +127,15 @@ export default function PrincipalTable({ data, type }) {
                                             method="delete"
                                             as="button"
                                             className="h-full w-full"
+                                            onClick={(e) => {
+                                                if (
+                                                    !confirm(
+                                                        'Are you sure you want to delete this category?',
+                                                    )
+                                                ) {
+                                                    e.preventDefault();
+                                                }
+                                            }}
                                         >
                                             Delete
                                         </Link>

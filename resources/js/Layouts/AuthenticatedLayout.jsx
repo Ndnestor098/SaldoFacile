@@ -41,7 +41,7 @@ export default function AuthenticatedLayout({ children }) {
             subMenu: [
                 { name: 'Recurring Incomes', route: 'incomes.recurring' },
                 { name: 'History', route: 'incomes.history' },
-                { name: 'Categories', route: 'incomes.categories' },
+                { name: 'Categories', route: 'incomes.category' },
             ],
         },
         {
@@ -50,7 +50,7 @@ export default function AuthenticatedLayout({ children }) {
             subMenu: [
                 { name: 'Recurring Expenses', route: 'expenses.recurring' },
                 { name: 'History', route: 'expenses.history' },
-                { name: 'Categories', route: 'expenses.categories' },
+                { name: 'Categories', route: 'expenses.category' },
             ],
         },
     ];
@@ -141,10 +141,9 @@ export default function AuthenticatedLayout({ children }) {
                             className="peer sr-only"
                             type="checkbox"
                             checked={theme === 'dark'}
-                            onChange={() => {
-                                setTheme(theme === 'dark' ? 'light' : 'dark');
-                                console.log('hola');
-                            }}
+                            onChange={() =>
+                                setTheme(theme === 'dark' ? 'light' : 'dark')
+                            }
                         />
                         <div className="h-8 w-16 rounded-full bg-gradient-to-r from-yellow-300 to-orange-400 transition-all duration-500 after:absolute after:left-1 after:top-1 after:flex after:h-6 after:w-6 after:items-center after:justify-center after:rounded-full after:bg-white after:text-lg after:shadow-md after:transition-all after:duration-500 after:content-['☀️'] peer-checked:from-blue-400 peer-checked:to-indigo-500 peer-checked:after:translate-x-8 peer-checked:after:content-['🌙']"></div>
                     </label>

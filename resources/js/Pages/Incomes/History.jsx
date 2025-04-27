@@ -24,7 +24,7 @@ export default function History({ incomes, categories }) {
             <Head title="History - Incomes" />
             <AuthenticatedLayout>
                 {/* Filter */}
-                <section className="mt-2 flex justify-between bg-white p-4 dark:bg-gray-200">
+                <section className="mt-2 flex flex-wrap justify-between gap-4 bg-white p-4 dark:bg-gray-200 md:flex-nowrap md:gap-0">
                     <HistoryFilter categories={categories} type="incomes" />
                 </section>
                 {/* Table */}
