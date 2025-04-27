@@ -69,21 +69,14 @@ export default function HistoryFilter({ categories, type }) {
                             </option>
                             {categories.length > 0 &&
                                 categories.map((category) => {
-                                    if (
-                                        category.type === type ||
-                                        category.type === 'recurrent_' + type
-                                    ) {
-                                        return (
-                                            <option
-                                                key={'category-' + category.id}
-                                                value={category.id}
-                                            >
-                                                {category.name}
-                                            </option>
-                                        );
-                                    }
-
-                                    return null;
+                                    return (
+                                        <option
+                                            key={'category-' + category.id}
+                                            value={category.id}
+                                        >
+                                            {category.name}
+                                        </option>
+                                    );
                                 })}
                         </select>
                     </label>

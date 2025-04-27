@@ -46,12 +46,76 @@ export default function AddingCategory({ icons, type }) {
         <>
             <div className="flex flex-col items-center justify-center gap-1 bg-white p-6 shadow-sm dark:bg-gray-200">
                 <h1 className="text-2xl font-bold">Add Income Category</h1>
-                <p className="mt-2 text-black">
-                    Organize and manage your income categories easily.
-                </p>
+                {type === 'expenses' && (
+                    <div className="rounded-md bg-gray-100 p-5 text-base text-gray-700 dark:bg-gray-200 dark:text-gray-800">
+                        <p className="mb-3">
+                            It is recommended to add categories like{' '}
+                            <span className="font-semibold">Rent</span>,{' '}
+                            <span className="font-semibold">Mortgage</span>,{' '}
+                            <span className="font-semibold">Credit</span>,{' '}
+                            <span className="font-semibold">Loans</span>, and{' '}
+                            <span className="font-semibold">
+                                Ongoing Services
+                            </span>{' '}
+                            under the{' '}
+                            <span className="italic">"Recurrent Expenses"</span>{' '}
+                            section, as this area automatically manages
+                            recurring charges.
+                        </p>
+                        <p>
+                            For one-time purchases, it is suggested to use the{' '}
+                            <span className="italic">"Expenses"</span> section
+                            for items like{' '}
+                            <span className="font-semibold">Clothing</span>,{' '}
+                            <span className="font-semibold">Electronics</span>,{' '}
+                            <span className="font-semibold">Travel</span>, and{' '}
+                            <span className="font-semibold">Dining Out</span>,{' '}
+                            as these are considered occasional, non-recurring
+                            expenses.
+                        </p>
+                    </div>
+                )}
+
+                {type === 'incomes' && (
+                    <div className="rounded-md bg-gray-100 p-5 text-base text-gray-700 dark:bg-gray-200 dark:text-gray-800">
+                        <p className="mb-3">
+                            It is recommended to add categories like{' '}
+                            <span className="font-semibold">Salary</span>,{' '}
+                            <span className="font-semibold">Rental Income</span>
+                            , <span className="font-semibold">Pensions</span>,{' '}
+                            <span className="font-semibold">
+                                Business Profits
+                            </span>
+                            , and{' '}
+                            <span className="font-semibold">
+                                Investment Returns
+                            </span>{' '}
+                            under the{' '}
+                            <span className="italic">"Recurrent Incomes"</span>{' '}
+                            section, as this area automatically manages
+                            recurring income streams.
+                        </p>
+                        <p>
+                            For one-time purchases, it is suggested to use the{' '}
+                            <span className="italic">"Expenses"</span> section
+                            for items like{' '}
+                            <span className="font-semibold">Clothing</span>,{' '}
+                            <span className="font-semibold">Electronics</span>,{' '}
+                            <span className="font-semibold">Travel</span>, and{' '}
+                            <span className="font-semibold">Dining Out</span>,
+                            as these are considered occasional, non-recurring
+                            expenses.
+                        </p>
+                    </div>
+                )}
+
                 <button
                     onClick={() => setView(!view)}
-                    className="mt-2 max-w-40 rounded-md bg-green_primary px-3 py-1 font-semibold text-quaternary"
+                    className={`mt-2 max-w-40 rounded-md px-3 py-1 font-semibold ${
+                        type === 'incomes'
+                            ? 'bg-green_primary text-quaternary'
+                            : 'bg-red_primary text-white hover:bg-quaternary'
+                    }`}
                 >
                     Create Category
                 </button>
@@ -78,7 +142,12 @@ export default function AddingCategory({ icons, type }) {
                             </svg>
                         </div>
                         <h1 className="mb-4 text-center text-2xl font-bold">
-                            Add Income Category
+                            Add
+                            {' ' +
+                                type.charAt(0).toUpperCase() +
+                                type.slice(1) +
+                                ' '}
+                            Category
                         </h1>
                         <form
                             onSubmit={handleSubmit}
@@ -191,7 +260,11 @@ export default function AddingCategory({ icons, type }) {
                                 )}
                             </div>
                             <button
-                                className="mt-4 w-full rounded-md bg-green_primary px-4 py-2 font-semibold text-quaternary hover:bg-white"
+                                className={`mt-4 w-full rounded-md px-4 py-2 font-semibold ${
+                                    type === 'incomes'
+                                        ? 'bg-green_primary text-quaternary hover:bg-white'
+                                        : 'bg-red_primary text-white hover:bg-white hover:text-quaternary'
+                                }`}
                                 type="submit"
                                 disabled={processing}
                                 style={{

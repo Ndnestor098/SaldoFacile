@@ -29,7 +29,7 @@ class ExpenseController extends Controller
 
     public function history(Request $request)
     {
-        $categories = Category::all();
+        $categories = Category::whereIn('type', ['incomes', 'recurrent_incomes'])->get();
         $expenses = Expense::with(['category:id,name'])
             ->when($request->filled('category_id'), function ($query) use ($request) {
                 $query->whereHas('category', function ($q) use ($request) {
