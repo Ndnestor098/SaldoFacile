@@ -1,6 +1,7 @@
 import { Link, useForm } from '@inertiajs/react';
+import { useEffect } from 'react';
 
-export default function HistoryFilter({ categories, type }) {
+export default function HistoryFilter({ categories, type, active }) {
     const queryString = window.location.search;
     // Crear un objeto URLSearchParams a partir de la cadena de consulta
     const urlParams = new URLSearchParams(queryString);
@@ -9,7 +10,12 @@ export default function HistoryFilter({ categories, type }) {
         amount: urlParams.get('amount') || '',
         date: urlParams.get('date') || '',
         category_id: urlParams.get('category_id') || '',
+        active: '',
     });
+
+    useEffect(() => {
+        setData('active', active);
+    }, [active]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -69,14 +75,32 @@ export default function HistoryFilter({ categories, type }) {
                             </option>
                             {categories.length > 0 &&
                                 categories.map((category) => {
-                                    return (
-                                        <option
-                                            key={'category-' + category.id}
-                                            value={category.id}
-                                        >
-                                            {category.name}
-                                        </option>
-                                    );
+                                    const condition = category.type;
+
+                                    if (condition === type) {
+                                        return (
+                                            <option
+                                                key={'category-' + category.id}
+                                                value={category.id}
+                                            >
+                                                {category.name}
+                                            </option>
+                                        );
+                                    }
+
+                                    if (
+                                        type.includes('recurring') &&
+                                        condition.includes('recurrent_')
+                                    ) {
+                                        return (
+                                            <option
+                                                key={'category-' + category.id}
+                                                value={category.id}
+                                            >
+                                                {category.name}
+                                            </option>
+                                        );
+                                    }
                                 })}
                         </select>
                     </label>

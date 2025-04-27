@@ -30,6 +30,7 @@ class IncomeController extends Controller
     public function history(Request $request)
     {
         $categories = Category::whereIn('type', ['incomes', 'recurrent_incomes'])->get();
+        
         $incomes = Income::with(['category:id,name'])
             ->when($request->filled('category_id'), function ($query) use ($request) {
                 $query->whereHas('category', function ($q) use ($request) {
@@ -42,8 +43,21 @@ class IncomeController extends Controller
             ->orderBy('date', 'desc')
             ->paginate(10)
             ->withQueryString();
+        
+        $recurrentIncomes = RecurrentIncome::with(['category:id,name'])
+            ->when($request->filled('category_id'), function ($query) use ($request) {
+                $query->whereHas('category', function ($q) use ($request) {
+                    $q->where('id', $request->category_id);
+                });
+            })
+            ->amount($request->amount)
+            ->date($request->date)
+            ->where('user_id', Auth::id())
+            ->orderBy('date', 'desc')
+            ->paginate(10)
+            ->withQueryString();
 
-        return Inertia::render('Incomes/History', compact('categories', 'incomes'));
+        return Inertia::render('Incomes/History', compact('categories', 'incomes', 'recurrentIncomes'));
     }
 
     /**

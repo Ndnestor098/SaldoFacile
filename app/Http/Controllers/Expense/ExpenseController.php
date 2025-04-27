@@ -29,7 +29,8 @@ class ExpenseController extends Controller
 
     public function history(Request $request)
     {
-        $categories = Category::whereIn('type', ['incomes', 'recurrent_incomes'])->get();
+        $categories = Category::whereIn('type', ['expenses', 'recurrent_expenses'])->get();
+
         $expenses = Expense::with(['category:id,name'])
             ->when($request->filled('category_id'), function ($query) use ($request) {
                 $query->whereHas('category', function ($q) use ($request) {
@@ -42,8 +43,21 @@ class ExpenseController extends Controller
             ->orderBy('date', 'desc')
             ->paginate(10)
             ->withQueryString();
+        
+        $recurrentExpenses = RecurrentExpense::with(['category:id,name'])
+            ->when($request->filled('category_id'), function ($query) use ($request) {
+                $query->whereHas('category', function ($q) use ($request) {
+                    $q->where('id', $request->category_id);
+                });
+            })
+            ->amount($request->amount)
+            ->date($request->date)
+            ->where('user_id', Auth::id())
+            ->orderBy('date', 'desc')
+            ->paginate(10)
+            ->withQueryString();
 
-        return Inertia::render('Expenses/History', compact('categories', 'expenses'));
+        return Inertia::render('Expenses/History', compact('categories', 'expenses', 'recurrentExpenses'));
     }
 
     public function store(Request $request)
