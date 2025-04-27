@@ -174,14 +174,21 @@ export default function AddingIncome({ categories }) {
                                         Select Category
                                     </option>
                                     {categories.length > 0 &&
-                                        categories.map((category) => (
-                                            <option
-                                                key={'category-' + category.id}
-                                                value={category.id}
-                                            >
-                                                {category.name}
-                                            </option>
-                                        ))}
+                                        categories.map((category) => {
+                                            return (
+                                                category.type === 'incomes' && (
+                                                    <option
+                                                        key={
+                                                            'category-' +
+                                                            category.id
+                                                        }
+                                                        value={category.id}
+                                                    >
+                                                        {category.name}
+                                                    </option>
+                                                )
+                                            );
+                                        })}
                                 </select>
                                 {errors.category_id && (
                                     <span className="text-sm text-red-600">

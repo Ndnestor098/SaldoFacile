@@ -174,14 +174,22 @@ export default function AddingExpense({ categories }) {
                                         Select Category
                                     </option>
                                     {categories.length > 0 &&
-                                        categories.map((category) => (
-                                            <option
-                                                key={'category-' + category.id}
-                                                value={category.id}
-                                            >
-                                                {category.name}
-                                            </option>
-                                        ))}
+                                        categories.map((category) => {
+                                            return (
+                                                category.type ===
+                                                    'expenses' && (
+                                                    <option
+                                                        key={
+                                                            'category-' +
+                                                            category.id
+                                                        }
+                                                        value={category.id}
+                                                    >
+                                                        {category.name}
+                                                    </option>
+                                                )
+                                            );
+                                        })}
                                 </select>
                                 {errors.category_id && (
                                     <span className="text-sm text-red-500">

@@ -45,7 +45,9 @@ export default function AddingCategory({ icons, type }) {
     return (
         <>
             <div className="flex flex-col items-center justify-center gap-1 bg-white p-6 shadow-sm dark:bg-gray-200">
-                <h1 className="text-2xl font-bold">Add Income Category</h1>
+                <h1 className="text-2xl font-bold">
+                    Add {type.charAt(0).toUpperCase() + type.slice(1)} Category
+                </h1>
                 {type === 'expenses' && (
                     <div className="rounded-md bg-gray-100 p-5 text-base text-gray-700 dark:bg-gray-200 dark:text-gray-800">
                         <p className="mb-3">
@@ -92,19 +94,24 @@ export default function AddingCategory({ icons, type }) {
                             </span>{' '}
                             under the{' '}
                             <span className="italic">"Recurrent Incomes"</span>{' '}
-                            section, as this area automatically manages
-                            recurring income streams.
+                            section, as these categories involve regular,
+                            recurring income streams that need automatic
+                            management.
                         </p>
                         <p>
-                            For one-time purchases, it is suggested to use the{' '}
-                            <span className="italic">"Expenses"</span> section
-                            for items like{' '}
-                            <span className="font-semibold">Clothing</span>,{' '}
-                            <span className="font-semibold">Electronics</span>,{' '}
-                            <span className="font-semibold">Travel</span>, and{' '}
-                            <span className="font-semibold">Dining Out</span>,
-                            as these are considered occasional, non-recurring
-                            expenses.
+                            For one-time or occasional incomes, it is suggested
+                            to use the
+                            <span className="italic"> "Incomes"</span> section
+                            for items such as{' '}
+                            <span className="font-semibold">
+                                Freelance Payments
+                            </span>
+                            , <span className="font-semibold">Bonuses</span>,{' '}
+                            <span className="font-semibold">Gifts</span>, and{' '}
+                            <span className="font-semibold">
+                                Lottery Prizes
+                            </span>
+                            , as these are non-recurring income sources.
                         </p>
                     </div>
                 )}
