@@ -20,13 +20,13 @@ export default function Categoy({ categories, icons }) {
 
     return (
         <>
-            <Head title="Incomes" />
+            <Head title="Category - Expenses" />
             <AuthenticatedLayout>
                 <section className="relative">
-                    <AddingCategory icons={icons} />
+                    <AddingCategory icons={icons} type="expenses" />
                 </section>
                 <section className="mt-2 flex justify-center bg-white p-4 dark:bg-gray-200">
-                    <CategoryTag categories={categories} type="incomes" />
+                    <CategoryTag categories={categories} type="expenses" />
                 </section>
             </AuthenticatedLayout>
         </>

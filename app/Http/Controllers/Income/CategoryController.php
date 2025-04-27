@@ -14,7 +14,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::with('icon')->get();
+        $categories = Category::with('icon')
+            ->whereIn('type', ['incomes', 'recurrent_incomes'])
+            ->orderBy('name')
+            ->get();
+            
         $icons = Icon::all();
 
         return inertia('Incomes/Category', compact('categories', 'icons')); 

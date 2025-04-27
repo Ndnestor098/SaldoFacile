@@ -1,14 +1,22 @@
 import { Link } from '@inertiajs/react';
 import { DynamicIcon } from 'lucide-react/dynamic';
 
+function isDarkColor(hexColor) {
+    if (!hexColor) return false;
+    const r = parseInt(hexColor.substr(1, 2), 16);
+    const g = parseInt(hexColor.substr(3, 2), 16);
+    const b = parseInt(hexColor.substr(5, 2), 16);
+
+    // Fórmula de luminancia percibida
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+    return luminance < 0.5; // Si la luminancia es baja, el color es oscuro
+}
+
 export default function CategoryTag({ categories, type }) {
     return (
         <div className="container mx-auto flex flex-wrap items-center justify-evenly gap-4">
             {categories.map((category) => {
-                const $condition = category.type;
-                if (!$condition.includes(type)) {
-                    return;
-                }
                 return (
                     <div
                         key={category.id}
@@ -24,13 +32,25 @@ export default function CategoryTag({ categories, type }) {
                                 style={{ color: category.text_color }}
                             />
                         )}
-                        <span className="text-center text-sm font-semibold">
+                        <span
+                            className={`text-center text-sm font-semibold ${
+                                isDarkColor(category.background_color)
+                                    ? 'text-white'
+                                    : 'text-black'
+                            }`}
+                        >
                             {category.name}
                         </span>
-                        <span className="cursor-pointer text-quaternary hover:text-red-500">
+                        <span
+                            className={`cursor-pointer hover:text-red-500 ${
+                                isDarkColor(category.background_color)
+                                    ? 'text-white'
+                                    : 'text-quaternary'
+                            }`}
+                        >
                             <Link
                                 href={route(
-                                    'incomes.category.destroy',
+                                    type + '.category.destroy',
                                     category.id,
                                 )}
                                 method="delete"

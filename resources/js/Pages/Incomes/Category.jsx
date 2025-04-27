@@ -23,7 +23,7 @@ export default function Categoy({ categories, icons }) {
             <Head title="Incomes" />
             <AuthenticatedLayout>
                 <section className="relative">
-                    <AddingCategory icons={icons} />
+                    <AddingCategory icons={icons} type="incomes" />
                 </section>
                 <section className="mt-2 flex justify-center bg-white p-4 dark:bg-gray-200">
                     <CategoryTag categories={categories} type="incomes" />

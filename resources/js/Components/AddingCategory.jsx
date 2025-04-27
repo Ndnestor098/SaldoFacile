@@ -10,7 +10,7 @@ function getRandomPastelHexColor() {
     return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
 }
 
-export default function AddingCategory({ icons }) {
+export default function AddingCategory({ icons, type }) {
     let [view, setView] = useState(false);
     const { data, setData, post, processing, errors, clearErrors, reset } =
         useForm({
@@ -32,7 +32,7 @@ export default function AddingCategory({ icons }) {
             setData('background_color', '#ffffff');
         }
 
-        post(route('incomes.category.store'), {
+        post(route(type + '.category.store'), {
             data,
             onSuccess: () => {
                 setView(false);
@@ -41,7 +41,6 @@ export default function AddingCategory({ icons }) {
             },
         });
     }
-    console.log(data);
 
     return (
         <>
@@ -130,9 +129,14 @@ export default function AddingCategory({ icons }) {
                                     <option value="" disabled hidden>
                                         Select Type
                                     </option>
-                                    <option value="incomes">Incomes</option>
-                                    <option value="recurrent_incomes">
-                                        Recurrent Incomes
+                                    <option value={type}>
+                                        {type.charAt(0).toUpperCase() +
+                                            type.slice(1)}
+                                    </option>
+                                    <option value={'recurrent_' + type}>
+                                        Recurrent{' '}
+                                        {type.charAt(0).toUpperCase() +
+                                            type.slice(1)}
                                     </option>
                                 </select>
                                 {errors.type && (
