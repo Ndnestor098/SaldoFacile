@@ -57,7 +57,15 @@ class ExpenseController extends Controller
             ->paginate(12)
             ->withQueryString();
 
-        return Inertia::render('Expenses/History', compact('categories', 'expenses', 'recurrentExpenses'));
+        $expensesAll = Expense::all();
+        $recurrentExpensesAll = RecurrentExpense::all();
+        return Inertia::render('Expenses/History', compact(
+            'categories',
+            'expenses',
+            'recurrentExpenses',
+            'expensesAll', 
+            'recurrentExpensesAll'
+        ));
     }
 
     public function store(Request $request)

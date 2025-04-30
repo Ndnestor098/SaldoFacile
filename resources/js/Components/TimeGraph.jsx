@@ -227,7 +227,7 @@ function getLastThreeYearsSummary(data) {
     return result.reverse();
 }
 
-export default function TimeGraph({ dataRecurrent, data, active }) {
+export default function TimeGraph({ dataRecurrent, data, active, type }) {
     const [selection, setSelection] = useState(0);
 
     const dataToday = getDataHoursSummary(active ? data : dataRecurrent);
@@ -349,10 +349,17 @@ export default function TimeGraph({ dataRecurrent, data, active }) {
                         <Legend />
                         <Bar
                             dataKey="amount"
-                            fill={'#9DC08B'}
+                            fill={type == 'incomes' ? '#9DC08B' : '#BF3131'}
                             stroke="#4d4d4d"
                             activeBar={
-                                <Rectangle fill={'#BBD8AC'} stroke="#4d4d4d" />
+                                <Rectangle
+                                    fill={
+                                        type == 'incomes'
+                                            ? '#BBD8AC'
+                                            : '#FF8383'
+                                    }
+                                    stroke="#4d4d4d"
+                                />
                             }
                         />
                     </BarChart>

@@ -107,6 +107,7 @@ export default function History({
                         dataRecurrent={recurrentIncomesAll}
                         data={incomesAll}
                         active={active}
+                        type={'incomes'}
                     />
                 </section>
             </AuthenticatedLayout>

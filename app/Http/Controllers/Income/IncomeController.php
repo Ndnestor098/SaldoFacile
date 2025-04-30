@@ -44,9 +44,6 @@ class IncomeController extends Controller
             ->paginate(12)
             ->withQueryString();
         
-        $incomesAll = Income::all();
-        $recurrentIncomesAll = RecurrentIncome::all();
-        
         $recurrentIncomes = RecurrentIncome::with(['category:id,name'])
             ->when($request->filled('category_id'), function ($query) use ($request) {
                 $query->whereHas('category', function ($q) use ($request) {
@@ -60,6 +57,9 @@ class IncomeController extends Controller
             ->paginate(12)
             ->withQueryString();
 
+        $incomesAll = Income::all();
+        $recurrentIncomesAll = RecurrentIncome::all();
+    
         return Inertia::render('Incomes/History', compact(
             'categories', 
             'incomes', 
