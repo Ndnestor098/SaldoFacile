@@ -41,7 +41,7 @@ class ExpenseController extends Controller
             ->date($request->date)
             ->where('user_id', Auth::id())
             ->orderBy('date', 'desc')
-            ->paginate(10)
+            ->paginate(12)
             ->withQueryString();
         
         $recurrentExpenses = RecurrentExpense::with(['category:id,name'])
@@ -54,7 +54,7 @@ class ExpenseController extends Controller
             ->date($request->date)
             ->where('user_id', Auth::id())
             ->orderBy('date', 'desc')
-            ->paginate(10)
+            ->paginate(12)
             ->withQueryString();
 
         return Inertia::render('Expenses/History', compact('categories', 'expenses', 'recurrentExpenses'));

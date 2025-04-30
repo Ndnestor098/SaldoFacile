@@ -21,7 +21,7 @@ class IncomeFactory extends Factory
             'amount' => $this->faker->randomFloat(2, 100, 10000),
             'category_id' => $this->faker->numberBetween(1, 10),
             'source' => $this->faker->word,
-            'date' => $this->faker->date(),
+            'date' => $this->faker->dateTimeBetween('2023-01-01', 'now')->format('Y-m-d H:i:s'),
             'description' => $this->faker->sentence,
             'payment_method' => $this->faker->randomElement(['cash', 'bank_transfer', 'credit_card']),
             'currency' => $this->faker->randomElement(['USD', 'EUR', 'GBP']),

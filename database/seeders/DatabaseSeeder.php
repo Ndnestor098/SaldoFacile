@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\Expense;
 use App\Models\Income;
+use App\Models\RecurrentExpense;
+use App\Models\RecurrentIncome;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -27,7 +27,9 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
         ]);
 
-        Income::factory(10)->create();
-        Expense::factory(10)->create();
+        Income::factory(30)->create();
+        Expense::factory(30)->create();
+        RecurrentIncome::factory(30)->create();
+        RecurrentExpense::factory(30)->create();
     }
 }

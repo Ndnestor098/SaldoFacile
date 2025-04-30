@@ -41,8 +41,11 @@ class IncomeController extends Controller
             ->date($request->date)
             ->where('user_id', Auth::id())
             ->orderBy('date', 'desc')
-            ->paginate(10)
+            ->paginate(12)
             ->withQueryString();
+        
+        $incomesAll = Income::all();
+        $recurrentIncomesAll = RecurrentIncome::all();
         
         $recurrentIncomes = RecurrentIncome::with(['category:id,name'])
             ->when($request->filled('category_id'), function ($query) use ($request) {
@@ -54,10 +57,16 @@ class IncomeController extends Controller
             ->date($request->date)
             ->where('user_id', Auth::id())
             ->orderBy('date', 'desc')
-            ->paginate(10)
+            ->paginate(12)
             ->withQueryString();
 
-        return Inertia::render('Incomes/History', compact('categories', 'incomes', 'recurrentIncomes'));
+        return Inertia::render('Incomes/History', compact(
+            'categories', 
+            'incomes', 
+            'recurrentIncomes', 
+            'incomesAll', 
+            'recurrentIncomesAll'
+        ));
     }
 
     /**

@@ -2,19 +2,25 @@ import HistoryButton from '@/Components/HistoryButton';
 import HistoryFilter from '@/Components/HistoryFilter';
 import Pagination from '@/Components/Pagination';
 import PrincipalTable from '@/Components/PrincipalTable';
+import TimeGraph from '@/Components/TimeGraph';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
 
-export default function History({ incomes, categories, recurrentIncomes }) {
+export default function History({
+    incomes,
+    categories,
+    recurrentIncomes,
+    incomesAll,
+    recurrentIncomesAll,
+}) {
     const queryParams = new URLSearchParams(window.location.search);
     const [active, setActive] = useState(() => {
         const param = queryParams.get('active');
         if (param === 'false') return false;
         return true;
     });
-
     const { flash } = usePage().props;
 
     useEffect(() => {
@@ -90,6 +96,18 @@ export default function History({ incomes, categories, recurrentIncomes }) {
                     }
                 >
                     <Pagination links={recurrentIncomes.links} />
+                </section>
+
+                {/* Graphics */}
+                <section
+                    className="relative mt-2 bg-white p-2 dark:bg-gray-200"
+                    aria-labelledby="time-range-label"
+                >
+                    <TimeGraph
+                        dataRecurrent={recurrentIncomesAll}
+                        data={incomesAll}
+                        active={active}
+                    />
                 </section>
             </AuthenticatedLayout>
         </>
