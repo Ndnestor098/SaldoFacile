@@ -439,7 +439,8 @@ export default function AuthenticatedLayout({ children }) {
                                                     : 'text-red-800 dark:text-red_primary'
                                             }`}
                                         >
-                                            {' ' + summary.net_balance}
+                                            {' ' +
+                                                summary.net_balance.toFixed(2)}
                                         </span>
                                     </p>
                                 </div>
