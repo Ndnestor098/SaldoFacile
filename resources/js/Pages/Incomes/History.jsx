@@ -14,6 +14,8 @@ export default function History({
     recurrentIncomes,
     incomesAll,
     recurrentIncomesAll,
+    incomesAmount,
+    recurrentAmount,
 }) {
     const queryParams = new URLSearchParams(window.location.search);
     const [active, setActive] = useState(() => {
@@ -32,6 +34,7 @@ export default function History({
             });
         }
     }, [flash.success]);
+    console.log(incomesAmount);
 
     return (
         <>
@@ -52,6 +55,46 @@ export default function History({
                     setActive={setActive}
                     type="incomes"
                 />
+
+                {/* Totals */}
+                <section className="relative mt-2 flex flex-wrap justify-center gap-3 bg-white p-2 dark:bg-gray-200 sm:flex-nowrap">
+                    <div className="flex items-center justify-center gap-2">
+                        <h3 className="font-bold">Total Incomes:</h3>
+                        <span>
+                            $
+                            {incomesAmount.toLocaleString('en-US', {
+                                style: 'decimal',
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                            })}
+                        </span>
+                    </div>
+                    <div className="flex items-center justify-center gap-2">
+                        <h3 className="font-bold">Total Recurrent Incomes:</h3>
+                        <span>
+                            $
+                            {recurrentAmount.toLocaleString('en-US', {
+                                style: 'decimal',
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                            })}
+                        </span>
+                    </div>
+                    <div className="flex items-center justify-center gap-2">
+                        <h3 className="font-bold">Total:</h3>
+                        <span>
+                            $
+                            {(incomesAmount + recurrentAmount).toLocaleString(
+                                'en-US',
+                                {
+                                    style: 'decimal',
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2,
+                                },
+                            )}
+                        </span>
+                    </div>
+                </section>
 
                 {/* Table Incomes */}
                 <section

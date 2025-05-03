@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Income;
 
+use App\Events\SummaryUpdated;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\RecurrentIncome;
@@ -85,6 +86,8 @@ class RecurrentIncomeController extends Controller
             'icon' => 'success',
         ]);
 
+        event(new SummaryUpdated(Auth::user()->id));
+
         return to_route('incomes.recurring');
     }
 
@@ -124,6 +127,8 @@ class RecurrentIncomeController extends Controller
             'text' => 'Recurrent Income deleted successfully.',
             'icon' => 'success',
         ]);
+
+        event(new SummaryUpdated(Auth::user()->id));
 
         return back();
     }

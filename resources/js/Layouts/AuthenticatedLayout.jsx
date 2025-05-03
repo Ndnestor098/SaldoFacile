@@ -4,7 +4,8 @@ import { Link, usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 
 export default function AuthenticatedLayout({ children }) {
-    const user = usePage().props.auth.user;
+    const { user } = usePage().props.auth;
+    const summary = user.summary;
     const url = usePage().url;
     const [notification, setNotification] = useState(0);
     const [menuOpenUser, setMenuOpenUser] = useState(false);
@@ -57,6 +58,7 @@ export default function AuthenticatedLayout({ children }) {
 
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
+            {/* Menu LEFT */}
             <div
                 className={`sidebar-menu fixed left-0 top-0 z-50 h-full w-64 bg-[#f8f4f3] p-4 transition-transform dark:bg-gray-800 md:block ${menuOpen ? 'block' : 'hidden'}`}
             >
@@ -154,6 +156,7 @@ export default function AuthenticatedLayout({ children }) {
                 onClick={() => setMenuOpen(!menuOpen)}
             ></div>
             <main className="main min-h-screen w-full bg-gray-200 transition-all dark:bg-gray-400 md:ml-64 md:w-[calc(100%-256px)]">
+                {/* Menu TOP */}
                 <div className="sticky left-0 top-0 z-30 flex items-center bg-[#f8f4f3] px-6 py-2 shadow-md shadow-black/5 dark:bg-gray-800">
                     <button
                         type="button"
@@ -428,7 +431,16 @@ export default function AuthenticatedLayout({ children }) {
                                         {user.name}
                                     </h2>
                                     <p className="text-xs text-gray-500 dark:text-primary">
-                                        {user.role ?? 'Client'}
+                                        Balance:
+                                        <span
+                                            className={`font-bold ${
+                                                summary.net_balance > 0
+                                                    ? 'text-green-800 dark:text-green_primary'
+                                                    : 'text-red-800 dark:text-red_primary'
+                                            }`}
+                                        >
+                                            {' ' + summary.net_balance}
+                                        </span>
                                     </p>
                                 </div>
                             </button>
@@ -476,7 +488,7 @@ export default function AuthenticatedLayout({ children }) {
                         </li>
                     </ul>
                 </div>
-                <div className="pt-12">
+                <div className="pb-5 pt-5 md:pb-8 md:pt-8">
                     <div className="max-w-8xl mx-2 sm:px-6 md:mx-auto lg:px-8">
                         {children}
                     </div>

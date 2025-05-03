@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Income;
 
+use App\Events\SummaryUpdated;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Icon;
+use App\Models\Summary;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -48,6 +51,8 @@ class CategoryController extends Controller
             'icon' => 'success',
         ]);
 
+        event(new SummaryUpdated(Auth::user()->id));
+
         return to_route('incomes.category');
     }
 
@@ -87,6 +92,8 @@ class CategoryController extends Controller
             'text' => 'The category has been deleted successfully.',
             'icon' => 'success',
         ]);
+
+        event(new SummaryUpdated(Auth::user()->id));
 
         return to_route('incomes.category');
     }

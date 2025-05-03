@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Income;
 
+use App\Events\SummaryUpdated;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Income;
@@ -59,13 +60,18 @@ class IncomeController extends Controller
 
         $incomesAll = Income::all();
         $recurrentIncomesAll = RecurrentIncome::all();
-    
+        
+        $incomesAmount = $incomesAll->sum('amount');
+        $recurrentAmount = $recurrentIncomesAll->sum('amount');
+
         return Inertia::render('Incomes/History', compact(
             'categories', 
             'incomes', 
             'recurrentIncomes', 
             'incomesAll', 
-            'recurrentIncomesAll'
+            'recurrentIncomesAll',
+            'incomesAmount',
+            'recurrentAmount',
         ));
     }
 
@@ -94,6 +100,8 @@ class IncomeController extends Controller
             'text' => 'Income added successfully.',
             'icon' => 'success',
         ]);
+
+        event(new SummaryUpdated(Auth::user()->id));
 
         return to_route('incomes.index');
     }
@@ -134,6 +142,8 @@ class IncomeController extends Controller
             'text' => 'Income deleted successfully.',
             'icon' => 'success',
         ]);
+
+        event(new SummaryUpdated(Auth::user()->id));
         
         return back();
     }

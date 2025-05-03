@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Events\SummaryUpdated;
 use App\Models\Expense;
 use App\Models\Income;
 use App\Models\RecurrentExpense;
@@ -16,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'test',
             'email' => 'test@test.com',
             'password' => bcrypt('test'),
@@ -31,5 +32,7 @@ class DatabaseSeeder extends Seeder
         Expense::factory(30)->create();
         RecurrentIncome::factory(30)->create();
         RecurrentExpense::factory(30)->create();
+
+        event(new SummaryUpdated($user->id));
     }
 }

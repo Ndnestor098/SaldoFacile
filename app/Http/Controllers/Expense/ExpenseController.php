@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Expense;
 
+use App\Events\SummaryUpdated;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Expense;
@@ -59,12 +60,18 @@ class ExpenseController extends Controller
 
         $expensesAll = Expense::all();
         $recurrentExpensesAll = RecurrentExpense::all();
+
+        $expensesAmount = $expensesAll->sum('amount');
+        $recurrentAmount = $recurrentExpensesAll->sum('amount');
+
         return Inertia::render('Expenses/History', compact(
             'categories',
             'expenses',
             'recurrentExpenses',
             'expensesAll', 
-            'recurrentExpensesAll'
+            'recurrentExpensesAll',
+            'expensesAmount',
+            'recurrentAmount',
         ));
     }
 
@@ -91,6 +98,8 @@ class ExpenseController extends Controller
             'icon' => 'success',
         ]);
 
+        event(new SummaryUpdated(Auth::user()->id));
+
         return to_route('expenses.index');
     }
  
@@ -108,6 +117,8 @@ class ExpenseController extends Controller
             'text' => 'Expense deleted successfully.',
             'icon' => 'success',
         ]);
+
+        event(new SummaryUpdated(Auth::user()->id));
 
         return back();
     }

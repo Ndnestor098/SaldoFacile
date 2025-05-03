@@ -256,7 +256,7 @@ export default function TimeGraph({ dataRecurrent, data, active, type }) {
             <div
                 role="group"
                 aria-label="Select time range"
-                className="flex items-center justify-center gap-2"
+                className="flex flex-wrap items-center justify-center gap-2 md:flex-nowrap"
             >
                 <button
                     onClick={() => setSelection(0)}

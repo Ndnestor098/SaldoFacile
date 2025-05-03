@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Expense;
 
+use App\Events\SummaryUpdated;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\RecurrentExpense;
@@ -83,6 +84,8 @@ class RecurrentExpenseController extends Controller
             'icon' => 'success',
         ]);
 
+        event(new SummaryUpdated(Auth::user()->id));
+
         return to_route('expenses.recurring');
     }
 
@@ -122,6 +125,8 @@ class RecurrentExpenseController extends Controller
             'text' => 'Recurrent Expense deleted successfully.',
             'icon' => 'success',
         ]);
+
+        event(new SummaryUpdated(Auth::user()->id));
 
         return back();
     }
