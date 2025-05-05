@@ -58,8 +58,8 @@ class ExpenseController extends Controller
             ->paginate(12)
             ->withQueryString();
 
-        $expensesAll = Expense::all();
-        $recurrentExpensesAll = RecurrentExpense::all();
+        $expensesAll = Expense::where('user_id', Auth::id())->get();
+        $recurrentExpensesAll = RecurrentExpense::where('user_id', Auth::id())->get();
 
         $expensesAmount = $expensesAll->sum('amount');
         $recurrentAmount = $recurrentExpensesAll->sum('amount');

@@ -58,8 +58,8 @@ class IncomeController extends Controller
             ->paginate(12)
             ->withQueryString();
 
-        $incomesAll = Income::all();
-        $recurrentIncomesAll = RecurrentIncome::all();
+        $incomesAll = Income::where('user_id', Auth::id())->get();
+        $recurrentIncomesAll = RecurrentIncome::where('user_id', Auth::id())->get();
         
         $incomesAmount = $incomesAll->sum('amount');
         $recurrentAmount = $recurrentIncomesAll->sum('amount');

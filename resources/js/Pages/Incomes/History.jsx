@@ -34,7 +34,6 @@ export default function History({
             });
         }
     }, [flash.success]);
-    console.log(incomesAmount);
 
     return (
         <>
