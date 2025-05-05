@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -45,6 +46,11 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        $allCategoriesId = Category::where('creation', 'default')->pluck('id');
+        if ($allCategoriesId->isNotEmpty()) {
+            $user->categories()->sync($allCategoriesId);
+        }
 
         return redirect(route('dashboard', absolute: false));
     }

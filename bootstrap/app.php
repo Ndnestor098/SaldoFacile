@@ -20,6 +20,10 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->name('expenses.')
                 ->middleware(['web', 'auth', 'verified'])
                 ->group(base_path('routes/expenses.php'));
+            Route::prefix('/profile')
+                ->name('profile.')
+                ->middleware(['web', 'auth', 'verified'])
+                ->group(base_path('routes/profile.php'));
         },
     )
     ->withMiddleware(function (Middleware $middleware) {

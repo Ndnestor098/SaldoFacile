@@ -32,7 +32,7 @@ export default function UpdateProfileInformation({
                 </h2>
 
                 <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                    Update your account's profile information and email address.
+                    Update your account's profile information.
                 </p>
             </header>
 
@@ -51,22 +51,6 @@ export default function UpdateProfileInformation({
                     />
 
                     <InputError className="mt-2" message={errors.name} />
-                </div>
-
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
-                        id="email"
-                        type="email"
-                        className="mt-1 block w-full"
-                        value={data.email}
-                        onChange={(e) => setData('email', e.target.value)}
-                        required
-                        autoComplete="username"
-                    />
-
-                    <InputError className="mt-2" message={errors.email} />
                 </div>
 
                 {mustVerifyEmail && user.email_verified_at === null && (

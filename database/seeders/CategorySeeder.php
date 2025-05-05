@@ -85,6 +85,7 @@ class CategorySeeder extends Seeder
                     'type' => $type,
                     'text_color' => $name[2],
                     'background_color' => $name[3],
+                    'creation' => 'default',
                 ]);
             }
         }

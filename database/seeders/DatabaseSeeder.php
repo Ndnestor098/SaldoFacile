@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Events\SummaryUpdated;
+use App\Models\Category;
 use App\Models\Expense;
+use App\Models\Icon;
 use App\Models\Income;
 use App\Models\RecurrentExpense;
 use App\Models\RecurrentIncome;
@@ -34,5 +36,8 @@ class DatabaseSeeder extends Seeder
         RecurrentExpense::factory(30)->create();
 
         event(new SummaryUpdated($user->id));
+        
+        $allCategoriesId = Category::pluck('id');
+        $user->categories()->sync($allCategoriesId);
     }
 }

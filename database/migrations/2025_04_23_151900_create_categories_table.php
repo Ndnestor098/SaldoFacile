@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->enum('type', ['incomes', 'expenses', 'recurrent_expenses', 'recurrent_incomes']);
+            $table->enum('creation', ['default', 'custom'])->default('custom');
             $table->string('text_color')->default('#000000');
             $table->string('background_color')->default('#ffffff');
             $table->unsignedBigInteger('icon_id');
             $table->foreign('icon_id')->references('id')->on('icons')->onDelete('cascade');
             $table->timestamps();
+            $table->unique(['name', 'type', 'creation']);
         });
     }
 

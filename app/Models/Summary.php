@@ -10,6 +10,7 @@ class Summary extends Model
         'total_incomes',
         'total_expenses',
         'net_balance',
+        'user_id'
     ];
 
 

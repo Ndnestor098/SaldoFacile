@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Icon;
 use App\Models\Summary;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +18,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::with('icon')
+        $user = User::find(Auth::id());
+    
+        $categories = $user
+            ->categories()
+            ->with('icon')
             ->whereIn('type', ['incomes', 'recurrent_incomes'])
             ->orderBy('name')
             ->get();
@@ -37,13 +42,27 @@ class CategoryController extends Controller
             'type' => 'required|in:incomes,recurrent_incomes',
         ]);
 
-        Category::create([
-            'name' => $request->name,
-            'icon_id' => $request->icon,
-            'text_color' => $request->text_color,
-            'background_color' => $request->background_color,
-            'type' => $request->type,
-        ]);
+       // Busca si ya existe la categoría globalmente
+        $category = Category::where('name', $request->name)
+            ->where('type', $request->type)
+            ->first();
+
+        if (!$category) {
+            $category = Category::create([
+                'name' => $request->name,
+                'icon_id' => $request->icon,
+                'text_color' => $request->text_color,
+                'background_color' => $request->background_color,
+                'type' => $request->type,
+                'creation' => 'custom',
+            ]);
+        }
+
+        // Asociamos al usuario solo si no está ya asociado
+        $user = User::find(Auth::id());
+        if (!$user->categories()->where('category_id', $category->id)->exists()) {
+            $user->categories()->attach($category->id);
+        }
 
         session()->flash('success', [
             'title' => 'Category Created',
@@ -85,7 +104,17 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
+        $user = User::find(Auth::id());
+
+        if (!$user->categories()->where('category_id', $category->id)->exists()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $user->categories()->detach($category->id);
+
+        if ($category->creation === 'custom') {
+            $category->delete();
+        }
         
         session()->flash('success', [
             'title' => 'Category Deleted',
@@ -93,7 +122,7 @@ class CategoryController extends Controller
             'icon' => 'success',
         ]);
 
-        event(new SummaryUpdated(Auth::user()->id));
+        event(new SummaryUpdated(Auth::id()));
 
         return to_route('incomes.category');
     }

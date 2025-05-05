@@ -434,13 +434,18 @@ export default function AuthenticatedLayout({ children }) {
                                         Balance:
                                         <span
                                             className={`font-bold ${
-                                                summary.net_balance > 0
-                                                    ? 'text-green-800 dark:text-green_primary'
-                                                    : 'text-red-800 dark:text-red_primary'
+                                                summary
+                                                    ? summary &&
+                                                      summary.net_balance > 0
+                                                        ? 'text-green-800 dark:text-green_primary'
+                                                        : 'text-red-800 dark:text-red_primary'
+                                                    : 'text-white'
                                             }`}
                                         >
-                                            {' ' +
-                                                summary.net_balance.toFixed(2)}
+                                            {summary
+                                                ? ' ' +
+                                                  summary.net_balance.toFixed(2)
+                                                : ' 0'}
                                         </span>
                                     </p>
                                 </div>
@@ -459,7 +464,7 @@ export default function AuthenticatedLayout({ children }) {
                             >
                                 <li>
                                     <Link
-                                        href="#"
+                                        href={route('profile.index')}
                                         className="flex items-center px-4 py-1.5 text-[13px] text-gray-600 hover:bg-secondary hover:font-semibold hover:text-quaternary"
                                     >
                                         Profile
@@ -474,16 +479,14 @@ export default function AuthenticatedLayout({ children }) {
                                     </Link>
                                 </li>
                                 <li>
-                                    <form method="POST" action="">
-                                        <Link
-                                            role="menuitem"
-                                            className="flex cursor-pointer items-center px-4 py-1.5 text-[13px] text-gray-600 hover:bg-secondary hover:font-semibold hover:text-quaternary"
-                                            onClick="event.preventDefault();
-                                            this.closest('form').submit();"
-                                        >
-                                            Log Out
-                                        </Link>
-                                    </form>
+                                    <Link
+                                        role="menuitem"
+                                        className="flex w-full cursor-pointer items-center px-4 py-1.5 text-[13px] text-gray-600 hover:bg-secondary hover:font-semibold hover:text-quaternary"
+                                        href={route('logout')}
+                                        method="post"
+                                    >
+                                        Log Out
+                                    </Link>
                                 </li>
                             </ul>
                         </li>

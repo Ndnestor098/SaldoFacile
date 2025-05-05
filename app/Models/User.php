@@ -79,4 +79,9 @@ class User extends Authenticatable
     {
         return $this->roles()->where('name', $role)->exists();
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'category_user');
+    }
 }
