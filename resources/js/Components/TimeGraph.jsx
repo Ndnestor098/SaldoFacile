@@ -251,7 +251,9 @@ export default function TimeGraph({ dataRecurrent, data, active, type }) {
     return (
         <>
             <h2 className="mb-3 mt-1 text-center text-2xl font-semibold">
-                Income Over Time Chart
+                {active
+                    ? `${type.charAt(0).toUpperCase() + type.slice(1)} Over Time Chart`
+                    : `Recurrent ${type.charAt(0).toUpperCase() + type.slice(1)} Over Time Chart`}
             </h2>
             <div
                 role="group"
