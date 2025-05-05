@@ -62,7 +62,7 @@ class IncomeController extends Controller
         $recurrentIncomesAll = RecurrentIncome::where('user_id', Auth::id())->get();
         
         $incomesAmount = $incomesAll->sum('amount');
-        $recurrentAmount = $recurrentIncomesAll->sum('amount');
+        $recurrentAmount = $recurrentIncomesAll->where('active', true)->sum('amount');
 
         return Inertia::render('Incomes/History', compact(
             'categories', 

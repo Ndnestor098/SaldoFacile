@@ -200,7 +200,7 @@ export default function AddingExpense({ categories }) {
                                 )}
                             </label>
                             <button
-                                className="mt-4 w-full rounded-md bg-red_primary px-4 py-2 font-semibold text-white hover:bg-white hover:text-quaternary"
+                                className="mt-4 w-full rounded-md bg-red_primary px-4 py-2 font-semibold text-white hover:bg-quaternary hover:text-white dark:hover:bg-white dark:hover:text-quaternary"
                                 type="submit"
                             >
                                 {processing ? 'Submiting...' : 'Send'}

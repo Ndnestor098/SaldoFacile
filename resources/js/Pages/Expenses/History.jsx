@@ -72,7 +72,7 @@ export default function History({
                         </div>
                         <div className="flex items-center justify-center gap-2">
                             <h3 className="font-bold">
-                                Total Recurrent Incomes:
+                                Total Active Recurrent Incomes:
                             </h3>
                             <span>
                                 $

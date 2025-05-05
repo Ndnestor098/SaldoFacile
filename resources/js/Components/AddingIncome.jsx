@@ -199,7 +199,7 @@ export default function AddingIncome({ categories }) {
                                 )}
                             </label>
                             <button
-                                className="mt-4 w-full rounded-md bg-green_primary px-4 py-2 font-semibold text-quaternary hover:bg-white"
+                                className="mt-4 w-full rounded-md bg-green_primary px-4 py-2 font-semibold text-quaternary hover:bg-quaternary hover:text-white dark:hover:bg-white dark:hover:text-quaternary"
                                 type="submit"
                                 disabled={processing}
                                 style={{

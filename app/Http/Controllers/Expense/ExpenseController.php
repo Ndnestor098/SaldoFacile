@@ -62,7 +62,7 @@ class ExpenseController extends Controller
         $recurrentExpensesAll = RecurrentExpense::where('user_id', Auth::id())->get();
 
         $expensesAmount = $expensesAll->sum('amount');
-        $recurrentAmount = $recurrentExpensesAll->sum('amount');
+        $recurrentAmount = $recurrentExpensesAll->where('active', true)->sum('amount');
 
         return Inertia::render('Expenses/History', compact(
             'categories',

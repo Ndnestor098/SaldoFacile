@@ -10,6 +10,40 @@ import {
     YAxis,
 } from 'recharts';
 
+function getLastSixMonthsSummary(data) {
+    const result = [];
+    const today = new Date();
+
+    // Iterar sobre los últimos 6 meses
+    for (let i = 0; i < 6; i++) {
+        const monthStart = new Date(today);
+        monthStart.setMonth(today.getMonth() - i);
+        monthStart.setDate(1); // El primer día del mes
+
+        const monthEnd = new Date(monthStart);
+        monthEnd.setMonth(monthStart.getMonth() + 1);
+        monthEnd.setDate(0); // El último día del mes
+
+        const amount = data
+            .filter((item) => {
+                const itemDate = new Date(item.date);
+                return itemDate >= monthStart && itemDate <= monthEnd;
+            })
+            .reduce((sum, item) => sum + Number(item.amount), 0);
+
+        // Formato: "Mar 2025"
+        const monthName = monthStart.toLocaleString('default', {
+            month: 'short',
+        });
+        const year = monthStart.getFullYear();
+        const label = `${monthName} ${year}`;
+
+        result.push({ name: label, amount });
+    }
+
+    return result;
+}
+
 export default function GraphicBasic({ data, type }) {
     if (!data) {
         return (
@@ -19,164 +53,7 @@ export default function GraphicBasic({ data, type }) {
         );
     }
 
-    const arrayGraphic = [
-        {
-            name: 'January',
-            amount: data
-                .map((item) => {
-                    return item.date.split('-')[1] === '01'
-                        ? Number(item.amount)
-                        : 0;
-                })
-                .reduce(
-                    (accumulator, currentValue) => accumulator + currentValue,
-                    0,
-                ),
-        },
-        {
-            name: 'February',
-            amount: data
-                .map((item) => {
-                    return item.date.split('-')[1] === '02'
-                        ? Number(item.amount)
-                        : 0;
-                })
-                .reduce(
-                    (accumulator, currentValue) => accumulator + currentValue,
-                    0,
-                ),
-        },
-        {
-            name: 'March',
-            amount: data
-                .map((item) => {
-                    return item.date.split('-')[1] === '03'
-                        ? Number(item.amount)
-                        : 0;
-                })
-                .reduce(
-                    (accumulator, currentValue) => accumulator + currentValue,
-                    0,
-                ),
-        },
-        {
-            name: 'April',
-            amount: data
-                .map((item) => {
-                    return item.date.split('-')[1] === '04'
-                        ? Number(item.amount)
-                        : 0;
-                })
-                .reduce(
-                    (accumulator, currentValue) => accumulator + currentValue,
-                    0,
-                ),
-        },
-        {
-            name: 'May',
-            amount: data
-                .map((item) => {
-                    return item.date.split('-')[1] === '05'
-                        ? Number(item.amount)
-                        : 0;
-                })
-                .reduce(
-                    (accumulator, currentValue) => accumulator + currentValue,
-                    0,
-                ),
-        },
-        {
-            name: 'June',
-            amount: data
-                .map((item) => {
-                    return item.date.split('-')[1] === '05'
-                        ? Number(item.amount)
-                        : 0;
-                })
-                .reduce(
-                    (accumulator, currentValue) => accumulator + currentValue,
-                    0,
-                ),
-        },
-        {
-            name: 'July',
-            amount: data
-                .map((item) => {
-                    return item.date.split('-')[1] === '07'
-                        ? Number(item.amount)
-                        : 0;
-                })
-                .reduce(
-                    (accumulator, currentValue) => accumulator + currentValue,
-                    0,
-                ),
-        },
-        {
-            name: 'August',
-            amount: data
-                .map((item) => {
-                    return item.date.split('-')[1] === '08'
-                        ? Number(item.amount)
-                        : 0;
-                })
-                .reduce(
-                    (accumulator, currentValue) => accumulator + currentValue,
-                    0,
-                ),
-        },
-        {
-            name: 'September',
-            amount: data
-                .map((item) => {
-                    return item.date.split('-')[1] === '09'
-                        ? Number(item.amount)
-                        : 0;
-                })
-                .reduce(
-                    (accumulator, currentValue) => accumulator + currentValue,
-                    0,
-                ),
-        },
-        {
-            name: 'October',
-            amount: data
-                .map((item) => {
-                    return item.date.split('-')[1] === '10'
-                        ? Number(item.amount)
-                        : 0;
-                })
-                .reduce(
-                    (accumulator, currentValue) => accumulator + currentValue,
-                    0,
-                ),
-        },
-        {
-            name: 'November',
-            amount: data
-                .map((item) => {
-                    return item.date.split('-')[1] === '11'
-                        ? Number(item.amount)
-                        : 0;
-                })
-                .reduce(
-                    (accumulator, currentValue) => accumulator + currentValue,
-                    0,
-                ),
-        },
-        {
-            name: 'Dicember',
-            amount: data
-                .map((item) => {
-                    return item.date.split('-')[1] === '12'
-                        ? Number(item.amount)
-                        : 0;
-                })
-                .reduce(
-                    (accumulator, currentValue) => accumulator + currentValue,
-                    0,
-                ),
-        },
-    ];
+    const arrayGraphic = getLastSixMonthsSummary(data);
     return (
         <div className="h-[300px] w-full max-w-6xl">
             <ResponsiveContainer width="100%" height="100%">

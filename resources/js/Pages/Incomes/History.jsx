@@ -69,7 +69,9 @@ export default function History({
                         </span>
                     </div>
                     <div className="flex items-center justify-center gap-2">
-                        <h3 className="font-bold">Total Recurrent Incomes:</h3>
+                        <h3 className="font-bold">
+                            Total Active Recurrent Incomes:
+                        </h3>
                         <span>
                             $
                             {recurrentAmount.toLocaleString('en-US', {

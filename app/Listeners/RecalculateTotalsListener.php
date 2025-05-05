@@ -28,7 +28,7 @@ class RecalculateTotalsListener
                 'amount' => $item->amount,
                 'category_id' => $item->category_id,
                 'source' => $item->source,
-                'description' => $item->description,
+                'description' => 'Automated income with the indicated date: ' . $item->payment_date,
                 'payment_method' => $item->payment_method,
                 'user_id' => $id,
                 'date' => now(),
@@ -42,7 +42,7 @@ class RecalculateTotalsListener
             Expense::create([
                 'amount' => $item->amount,
                 'category_id' => $item->category_id,
-                'description' => $item->description,
+                'description' => 'Automated expenses with the indicated date: ' . $item->payment_date,
                 'payment_method' => $item->payment_method,
                 'user_id' => $id,
                 'date' => now(),
@@ -65,8 +65,8 @@ class RecalculateTotalsListener
         $recurrentIncomeWeekly = RecurrentIncome::where('frequency', 'weekly')
             ->where('active', true)
             ->where('user_id', $event->user_id)
-            ->where('payment_date', today()->englishDayOfWeek)
-            ->whereDate('updated_at', '!=', today())
+            ->where('payment_date', strtolower(today()->englishDayOfWeek))
+            ->where('updated_at', '<', now()->startOfDay())
             ->get();
             
         $recurrentIncomeMonthly = RecurrentIncome::where('frequency', 'monthly')
@@ -136,9 +136,9 @@ class RecalculateTotalsListener
             ['user_id' => $event->user_id],
             [
                 'user_id' => $event->user_id,
-                'total_incomes' => $totalIncome || 0,
-                'total_expenses' => $totalExpense || 0,
-                'net_balance' => $finalTotal || 0,
+                'total_incomes' => $totalIncome ?: 0,
+                'total_expenses' => $totalExpense ?: 0,
+                'net_balance' => $finalTotal ?: 0,
             ]
         );
     }

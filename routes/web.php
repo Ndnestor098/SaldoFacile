@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\SummaryUpdated;
 use App\Http\Controllers\ProfileController;
 use App\Models\Category;
 use App\Models\Expense;
@@ -16,7 +17,10 @@ Route::get('/', function () {
 })->name("home");
 
 Route::get('/dashboard', function () {
+    event(new SummaryUpdated(Auth::id()));
+
     $categories = Category::all();
+
     $expenses = Expense::with(['category:id,name'])
         ->where('user_id', Auth::id())
         ->orderBy('date', 'desc')
@@ -35,6 +39,7 @@ Route::get('/dashboard', function () {
         ->where('user_id', Auth::id())
         ->orderBy('date', 'desc')
         ->get();
+
 
     return Inertia::render('Dashboard', compact(
         'categories',

@@ -14,7 +14,6 @@ export default function Dashboard({
     recurrentIncomes,
 }) {
     const summary = usePage().props.auth.user.summary;
-    console.log(summary);
 
     return (
         <>
