@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Models\Category;
 use App\Models\Expense;
 use App\Models\Income;
+use App\Models\RecurrentExpense;
+use App\Models\RecurrentIncome;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +26,23 @@ Route::get('/dashboard', function () {
         ->orderBy('date', 'desc')
         ->get();
 
-    return Inertia::render('Dashboard', compact('categories', 'expenses', 'incomes'));
+    $recurrentIncomes = RecurrentIncome::with(['category:id,name'])
+        ->where('user_id', Auth::id())
+        ->orderBy('date', 'desc')
+        ->get();
+
+    $recurrentExpenses = RecurrentExpense::with(['category:id,name'])
+        ->where('user_id', Auth::id())
+        ->orderBy('date', 'desc')
+        ->get();
+
+    return Inertia::render('Dashboard', compact(
+        'categories',
+        'expenses',
+        'incomes',
+        'recurrentIncomes',
+        'recurrentExpenses',
+    ));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 

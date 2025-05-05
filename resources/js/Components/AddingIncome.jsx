@@ -28,7 +28,9 @@ export default function AddingIncome({ categories }) {
             <div className="flex flex-col items-center justify-center gap-1 bg-white p-6 shadow-sm dark:bg-gray-200">
                 <h1 className="text-2xl font-bold">Add Income</h1>
                 <p className="mt-2 text-black">
-                    Manage your income records here.
+                    <span className="font-bold">Did you know?</span> You can add
+                    one-time income here — like gifts, lottery wins, or
+                    occasional sales — to keep your finances up to date.
                 </p>
                 <button
                     onClick={() => setView(!view)}

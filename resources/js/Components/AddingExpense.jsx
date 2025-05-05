@@ -28,7 +28,9 @@ export default function AddingExpense({ categories }) {
             <div className="flex flex-col items-center justify-center gap-1 bg-white p-6 shadow-sm dark:bg-gray-200">
                 <h1 className="text-2xl font-bold">Add Expense</h1>
                 <p className="mt-2 text-black">
-                    Manage your income records here.
+                    <span className="font-bold">Did you know?</span> You can log
+                    one-time expenses here — like shopping or spontaneous buys —
+                    to keep track of where your money goes.
                 </p>
                 <button
                     onClick={() => setView(!view)}
