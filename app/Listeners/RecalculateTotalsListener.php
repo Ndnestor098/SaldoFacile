@@ -22,13 +22,30 @@ class RecalculateTotalsListener
         //
     }
 
+    protected function formatPaymentDate($item) {
+        switch ($item->frequency) {
+            case 'daily':
+                return now()->format('m-d');
+            case 'weekly':
+                return ucfirst($item->payment_date); // Capitaliza: monday → Monday
+            case 'monthly':
+                return str_pad($item->payment_date, 2, '0', STR_PAD_LEFT);
+            case 'yearly':
+                return $item->payment_date; // ya está en formato mm-dd
+            default:
+                return 'N/A';
+        }
+    }
+
     protected function dataSaveIncome ($data, $id) {
         foreach ($data as $item) {
+            $formattedDate = $this->formatPaymentDate($item);
+
             Income::create([
                 'amount' => $item->amount,
                 'category_id' => $item->category_id,
                 'source' => $item->source,
-                'description' => 'Automated income with the indicated date: ' . $item->payment_date,
+                'description' => 'Automated income with the indicated date: ' . $formattedDate,
                 'payment_method' => $item->payment_method,
                 'user_id' => $id,
                 'date' => now(),
@@ -39,10 +56,12 @@ class RecalculateTotalsListener
 
     protected function dataSaveExpense($data, $id) {
         foreach ($data as $item) {
+            $formattedDate = $this->formatPaymentDate($item);
+
             Expense::create([
                 'amount' => $item->amount,
                 'category_id' => $item->category_id,
-                'description' => 'Automated expenses with the indicated date: ' . $item->payment_date,
+                'description' => 'Automated expenses with the indicated date: ' . $formattedDate,
                 'payment_method' => $item->payment_method,
                 'user_id' => $id,
                 'date' => now(),

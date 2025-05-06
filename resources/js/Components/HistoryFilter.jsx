@@ -115,7 +115,11 @@ export default function HistoryFilter({ categories, type, active }) {
                     Search
                 </button>
                 <Link
-                    href={route('incomes.history')}
+                    href={
+                        type === 'incomes'
+                            ? route('incomes.history')
+                            : route('expenses.history')
+                    }
                     className="rounded-md bg-red-600 px-4 py-2 font-bold text-white hover:shadow-lg"
                 >
                     Clear

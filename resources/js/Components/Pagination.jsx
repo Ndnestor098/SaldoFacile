@@ -1,12 +1,20 @@
 import { router } from '@inertiajs/react';
 
-export default function Pagination({ links }) {
+export default function Pagination({ links, active }) {
     return (
         <div className="flex justify-center">
             <nav className="flex space-x-2" aria-label="Pagination">
                 {links.map((link, i) => {
                     const isActive = link.active;
                     const isPrevOrNext = /Previous|Next/.test(link.label);
+                    const url = link.url ?? '';
+
+                    if (url) {
+                        // Eliminar cualquier 'active' anterior en la URL
+                        link.url = url.replace(/([&])active=[^&]*/g, '');
+
+                        link.url = link.url + '&active=' + active;
+                    }
 
                     return (
                         <button

@@ -115,7 +115,7 @@ export default function History({
                             : `hidden`
                     }
                 >
-                    <Pagination links={incomes.links} />
+                    <Pagination links={incomes.links} active={active} />
                 </section>
 
                 {/* Table Recurrent Incomes */}
@@ -139,7 +139,10 @@ export default function History({
                             : `hidden`
                     }
                 >
-                    <Pagination links={recurrentIncomes.links} />
+                    <Pagination
+                        links={recurrentIncomes.links}
+                        active={active}
+                    />
                 </section>
 
                 {/* Graphics */}

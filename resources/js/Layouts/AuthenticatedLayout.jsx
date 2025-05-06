@@ -178,13 +178,13 @@ export default function AuthenticatedLayout({ children }) {
                         </svg>
                     </button>
 
-                    <ul className="ml-auto flex items-center">
+                    <ul className="ml-auto flex items-center gap-2">
                         {/* Boton de buscador */}
-                        <li className="dropdown mr-1">
+                        <li className="dropdown">
                             {/* Boton para activar el buscador */}
                             <button
                                 type="button"
-                                className="dropdown-toggle mr-4 flex h-8 w-8 items-center justify-center rounded text-gray-400 hover:text-gray-600"
+                                className="dropdown-toggle flex h-8 w-8 items-center justify-center rounded text-gray-400 hover:text-gray-600"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -218,7 +218,7 @@ export default function AuthenticatedLayout({ children }) {
                             {/* Botones para activar las listas */}
                             <button
                                 type="button"
-                                className="dropdown-toggle mr-4 flex h-8 w-8 items-center justify-center rounded text-gray-400 hover:text-gray-600"
+                                className="dropdown-toggle flex h-8 w-8 items-center justify-center rounded text-gray-400 hover:text-gray-600"
                                 onClick={() => {
                                     if (notification === 0) setNotification(1);
                                     if (notification > 0) setNotification(0);
@@ -408,7 +408,7 @@ export default function AuthenticatedLayout({ children }) {
                         </button>
                         {/* ================================ Area Usuario ================================ */}
                         <li
-                            className="dropdown ml-3"
+                            className="dropdown"
                             onClick={() => setMenuOpenUser(!menuOpenUser)}
                         >
                             <button

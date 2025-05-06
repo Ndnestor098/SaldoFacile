@@ -38,8 +38,16 @@ class ExpenseController extends Controller
                     $q->where('id', $request->category_id);
                 });
             })
-            ->amount($request->amount)
-            ->date($request->date)
+            ->when($request->active === "true", function ($query) use ($request) {
+                $query->where(function($q) use ($request) {
+                    if ($request->filled('amount')) {
+                        $q->amount($request->amount);
+                    }
+                    if ($request->filled('date')) {
+                        $q->date($request->date);
+                    }
+                });
+            })
             ->where('user_id', Auth::id())
             ->orderBy('date', 'desc')
             ->paginate(12)
@@ -48,11 +56,21 @@ class ExpenseController extends Controller
         $recurrentExpenses = RecurrentExpense::with(['category:id,name'])
             ->when($request->filled('category_id'), function ($query) use ($request) {
                 $query->whereHas('category', function ($q) use ($request) {
-                    $q->where('id', $request->category_id);
+                    if ($request->active === "false") {
+                        $q->where('id', $request->category_id);
+                    }
                 });
             })
-            ->amount($request->amount)
-            ->date($request->date)
+            ->when($request->active === "false", function ($query) use ($request) {
+                $query->where(function($q) use ($request) {
+                    if ($request->filled('amount')) {
+                        $q->amount($request->amount);
+                    }
+                    if ($request->filled('date')) {
+                        $q->date($request->date);
+                    }
+                });
+            })
             ->where('user_id', Auth::id())
             ->orderBy('date', 'desc')
             ->paginate(12)

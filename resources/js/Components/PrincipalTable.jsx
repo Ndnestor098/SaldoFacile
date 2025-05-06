@@ -7,6 +7,8 @@ export default function PrincipalTable({ data, type }) {
         frequency: false,
         payment_date: false,
         end_date: false,
+        description: false,
+        source: false,
     });
 
     useEffect(() => {
@@ -24,6 +26,14 @@ export default function PrincipalTable({ data, type }) {
 
         if (data.some((item) => item.end_date)) {
             setActive((prev) => ({ ...prev, end_date: true }));
+        }
+
+        if (data.some((item) => item.description)) {
+            setActive((prev) => ({ ...prev, description: true }));
+        }
+
+        if (data.some((item) => item.source)) {
+            setActive((prev) => ({ ...prev, source: true }));
         }
     }, [data]);
 
@@ -53,9 +63,16 @@ export default function PrincipalTable({ data, type }) {
                                 <th className="border border-quaternary bg-gray-200 px-4 py-2 dark:bg-gray-400">
                                     Amount
                                 </th>
-                                <th className="border border-quaternary bg-gray-200 px-4 py-2 dark:bg-gray-400">
-                                    Source
-                                </th>
+                                {active.description == true && (
+                                    <th className="border border-quaternary bg-gray-200 px-4 py-2 dark:bg-gray-400">
+                                        Description
+                                    </th>
+                                )}
+                                {active.source == true && (
+                                    <th className="border border-quaternary bg-gray-200 px-4 py-2 dark:bg-gray-400">
+                                        Source
+                                    </th>
+                                )}
                                 {active.payment_method == true && (
                                     <th className="border border-quaternary bg-gray-200 px-4 py-2 dark:bg-gray-400">
                                         Payment Method
@@ -93,9 +110,17 @@ export default function PrincipalTable({ data, type }) {
                                     <td className="border border-quaternary bg-white px-4 py-2 dark:bg-gray-300">
                                         {item.amount}
                                     </td>
-                                    <td className="border border-quaternary bg-white px-4 py-2 dark:bg-gray-300">
-                                        {item.source || 'No source'}
-                                    </td>
+                                    {active.description && (
+                                        <td className="border border-quaternary bg-white px-4 py-2 dark:bg-gray-300">
+                                            {item.description ||
+                                                'No Description'}
+                                        </td>
+                                    )}
+                                    {active.source && (
+                                        <td className="border border-quaternary bg-white px-4 py-2 dark:bg-gray-300">
+                                            {item.source || 'No source'}
+                                        </td>
+                                    )}
                                     {active.payment_method && (
                                         <td className="border border-quaternary bg-white px-4 py-2 dark:bg-gray-300">
                                             {item.payment_method ||
