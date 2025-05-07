@@ -111,6 +111,18 @@ export default function AuthenticatedLayout({ children }) {
                     </span>
                     <li className="group mb-1">
                         <Link
+                            href={route('advice.index')}
+                            className="flex items-center rounded-md px-4 py-2 font-semibold text-quaternary hover:bg-tertiary hover:text-black group-[.active]:bg-tertiary group-[.active]:text-black dark:text-primary"
+                        >
+                            <i className="bx bx-bell mr-3 text-lg"></i>
+                            <span className="text-sm">Advice</span>
+                            {/* <span className="ml-auto rounded-full bg-red-200 px-2 py-0.5 text-xs font-medium tracking-wide text-red-600 md:block">
+                                5
+                            </span> */}
+                        </Link>
+                    </li>
+                    {/* <li className="group mb-1">
+                        <Link
                             href=""
                             className="flex items-center rounded-md px-4 py-2 font-semibold text-quaternary hover:bg-tertiary hover:text-black group-[.active]:bg-tertiary group-[.active]:text-black dark:text-primary"
                         >
@@ -132,7 +144,7 @@ export default function AuthenticatedLayout({ children }) {
                                 2 New
                             </span>
                         </Link>
-                    </li>
+                    </li> */}
                 </ul>
                 <div className="absolute bottom-2 flex h-8 w-full items-center justify-between pr-6">
                     <span className="font-semibold text-quaternary dark:text-primary">

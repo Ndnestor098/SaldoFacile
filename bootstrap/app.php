@@ -24,6 +24,10 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->name('profile.')
                 ->middleware(['web', 'auth', 'verified'])
                 ->group(base_path('routes/profile.php'));
+            Route::prefix('/advice')
+                ->name('advice.')
+                ->middleware(['web', 'auth', 'verified'])
+                ->group(base_path('routes/advice.php'));
         },
     )
     ->withMiddleware(function (Middleware $middleware) {
