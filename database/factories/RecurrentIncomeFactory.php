@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -35,10 +36,12 @@ class RecurrentIncomeFactory extends Factory
                 break;
         }
 
+        $categoryId = Category::where('type', 'recurrent_incomes')->inRandomOrder()->first();
+
         return [
             'user_id' => 1,
             'amount' => $this->faker->randomFloat(2, 100, 10000),
-            'category_id' => $this->faker->numberBetween(1, 10),
+            'category_id' => $categoryId,
             'source' => $this->faker->word,
             'date' => $this->faker->dateTimeBetween('2023-01-01', 'now')->format('Y-m-d H:i:s'),
             'description' => $this->faker->sentence,

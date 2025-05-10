@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('source')->nullable();
             $table->enum('currency', ['USD', 'EUR', 'GBP'])->default('USD');
             $table->date('date');
+            $table->boolean('is_automated')->default(false);
             $table->string('payment_method')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

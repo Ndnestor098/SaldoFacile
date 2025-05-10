@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,10 +17,12 @@ class ExpenseFactory extends Factory
      */
     public function definition(): array
     {
+        $categoryId = Category::where('type', 'expenses')->inRandomOrder()->first();
+
         return [
             'user_id' => 1,
             'amount' => $this->faker->randomFloat(2, 100, 10000),
-            'category_id' => $this->faker->numberBetween(1, 10),
+            'category_id' => $categoryId,
             'source' => $this->faker->word,
             'date' => $this->faker->dateTimeBetween('2023-01-01', 'now')->format('Y-m-d H:i:s'),
             'status' => $this->faker->randomElement(['pending', 'completed']),

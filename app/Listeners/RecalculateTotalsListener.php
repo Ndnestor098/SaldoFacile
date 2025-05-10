@@ -49,6 +49,7 @@ class RecalculateTotalsListener
                 'payment_method' => $item->payment_method,
                 'user_id' => $id,
                 'date' => now(),
+                'is_automated' => true
             ]);
             $item->touch();
         }
@@ -65,6 +66,7 @@ class RecalculateTotalsListener
                 'payment_method' => $item->payment_method,
                 'user_id' => $id,
                 'date' => now(),
+                'is_automated' => true
             ]);
             $item->touch();
         }

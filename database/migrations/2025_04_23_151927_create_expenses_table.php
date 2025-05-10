@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('currency')->default('USD');
             $table->string('status')->nullable();
             $table->date('date');
+            $table->boolean('is_automated')->default(false);
             $table->string('payment_method')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

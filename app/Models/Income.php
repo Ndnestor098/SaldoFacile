@@ -19,6 +19,7 @@ class Income extends Model
         'description',
         'payment_method',
         'currency',
+        'is_automated',
     ];
 
     public function user()
