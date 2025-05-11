@@ -1,0 +1,11 @@
+services:
+  saldofacile:
+    container_name: saldofacile
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./:/var/www
+    ports:
+      - "8000"
+    restart : always

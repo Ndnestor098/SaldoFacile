@@ -111,7 +111,12 @@ export default function Login() {
                                 Register Here
                             </Link>
                         </div>
-                        <button className="border-input inline-flex h-10 w-full items-center justify-center whitespace-nowrap rounded-md border bg-[#4285F4] px-4 py-2 text-sm font-medium text-white duration-300 hover:shadow-lg">
+                        <button
+                            onClick={() =>
+                                (window.location.href = route('google'))
+                            }
+                            className="border-input inline-flex h-10 w-full items-center justify-center whitespace-nowrap rounded-md border bg-[#4285F4] px-4 py-2 text-sm font-medium text-white duration-300 hover:shadow-lg"
+                        >
                             <div className="flex items-center justify-center">
                                 <svg
                                     role="img"
@@ -124,7 +129,7 @@ export default function Login() {
                                 Login with Google
                             </div>
                         </button>
-                        <button className="border-input inline-flex h-10 w-full items-center justify-center whitespace-nowrap rounded-md border bg-[#5865F2] px-4 py-2 text-sm font-medium text-white duration-300 hover:shadow-lg">
+                        {/* <button className="border-input inline-flex h-10 w-full items-center justify-center whitespace-nowrap rounded-md border bg-[#5865F2] px-4 py-2 text-sm font-medium text-white duration-300 hover:shadow-lg">
                             <div className="flex items-center justify-center">
                                 <svg
                                     role="img"
@@ -136,7 +141,7 @@ export default function Login() {
                                 </svg>
                                 Login with Discord
                             </div>
-                        </button>
+                        </button> */}
                     </div>
                 </form>
             </section>
