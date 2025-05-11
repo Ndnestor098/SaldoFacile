@@ -21,7 +21,7 @@ export default function Login() {
                 className="hidden h-screen w-1/2 bg-cover bg-center bg-no-repeat lg:block"
                 style={{
                     backgroundImage:
-                        "url('https://cdn.pixabay.com/photo/2016/09/03/23/34/cashbox-1642989_1280.jpg')",
+                        "url('assets/images/background_login.webp')",
                 }}
             >
                 <div className="h-full w-full bg-black bg-opacity-50"></div>

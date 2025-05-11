@@ -7,7 +7,7 @@ export default function Home() {
             <header className="relative z-20 flex items-center justify-between px-10 py-5">
                 <div className="flex flex-col items-center justify-center gap-1">
                     <img
-                        src="/assets/images/pig.png"
+                        src="/assets/images/pig.webp"
                         alt="Logo"
                         className="w-12"
                         draggable="false"
@@ -39,7 +39,8 @@ export default function Home() {
                 <div
                     className="absolute left-0 top-0 z-[-10] h-screen w-1/2 bg-cover bg-center bg-no-repeat"
                     style={{
-                        backgroundImage: "url('/assets/images/hero_image.png')",
+                        backgroundImage:
+                            "url('/assets/images/hero_image.webp')",
                     }}
                 ></div>
 
@@ -71,7 +72,7 @@ export default function Home() {
                 </section>
                 <section className="flex w-1/2 items-center justify-center">
                     <img
-                        src="/assets/images/chanchito.png"
+                        src="/assets/images/chanchito.webp"
                         alt="chanchito"
                         className="w-[72%]"
                         draggable="false"
