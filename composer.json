@@ -12,9 +12,11 @@
         "php": "^8.2",
         "inertiajs/inertia-laravel": "^2.0",
         "laravel/framework": "^12.0",
+        "laravel/octane": "^2.9",
         "laravel/sanctum": "^4.0",
         "laravel/socialite": "^5.20",
         "laravel/tinker": "^2.10.1",
+        "spiral/roadrunner": "^2025.1",
         "tightenco/ziggy": "^2.0"
     },
     "require-dev": {
