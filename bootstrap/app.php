@@ -37,7 +37,7 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
         ]);
 
-        if(getenv('APP_ENV') != 'local') {
+        if(env('APP_ENV') === 'production') {
             $middleware->trustProxies(
                 at: '*',
                 headers: Request::HEADER_X_FORWARDED_FOR |
