@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('payment_date')->nullable();
             $table->string('date');
             $table->string('source')->nullable();
-            $table->date('end_date')->nullable();
+            $table->string('end_date')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
         
