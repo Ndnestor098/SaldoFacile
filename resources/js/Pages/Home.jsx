@@ -4,21 +4,21 @@ export default function Home() {
     return (
         <>
             <Head title="Home" />
-            <header className="relative z-20 flex items-center justify-between px-10 py-5">
+            <header className="relative z-20 flex w-full items-center justify-between px-5 py-2 lg:px-10 lg:pt-5">
                 <div className="flex flex-col items-center justify-center gap-1">
                     <img
                         src="/assets/images/pig.webp"
                         alt="Logo"
-                        className="w-12"
+                        className="w-9 lg:w-12"
                         draggable="false"
                     />
                     <span className="font-bold text-seventh">SaldoFacile</span>
                 </div>
                 <nav>
-                    <ul className="flex gap-5">
+                    <ul className="flex w-full gap-5">
                         <li>
                             <Link
-                                className="rounded-lg bg-tertiary px-5 py-2 font-bold text-quaternary"
+                                className="rounded-lg bg-tertiary px-4 py-1 font-bold text-quaternary lg:px-5 lg:py-2"
                                 href={route('login')}
                             >
                                 Login
@@ -26,7 +26,7 @@ export default function Home() {
                         </li>
                         <li>
                             <Link
-                                className="rounded-lg bg-tertiary px-5 py-2 font-bold text-quaternary"
+                                className="rounded-lg bg-tertiary px-4 py-1 font-bold text-quaternary lg:px-5 lg:py-2"
                                 href={route('register')}
                             >
                                 Register
@@ -35,26 +35,26 @@ export default function Home() {
                     </ul>
                 </nav>
             </header>
-            <main className="flex h-full w-full items-center justify-around">
+            <main className="flex h-full w-full flex-col items-center justify-around lg:flex-row">
                 <div
-                    className="absolute left-0 top-0 z-[-10] h-screen w-1/2 bg-cover bg-center bg-no-repeat"
+                    className="fixed left-0 top-0 z-[-10] h-full w-full lg:w-1/2 lg:bg-cover lg:bg-center lg:bg-no-repeat"
                     style={{
                         backgroundImage:
                             "url('/assets/images/hero_image.webp')",
                     }}
                 ></div>
 
-                <section className="flex h-full w-1/2 flex-col justify-center gap-10 px-10">
-                    <header className="flex w-[400px] flex-col gap-5">
-                        <h1 className="w-min text-wrap text-9xl font-bold text-seventh">
+                <section className="flex h-full w-full flex-col justify-center gap-10 px-4 pb-2 lg:w-1/2 lg:px-10 lg:pb-0">
+                    <header className="flex w-full flex-col gap-5 lg:w-[400px]">
+                        <h1 className="w-min text-wrap text-5xl font-bold text-seventh lg:text-9xl">
                             Control Your Finances
                         </h1>
-                        <h3 className="mx-2 w-min text-nowrap text-5xl font-bold text-fifth">
+                        <h3 className="w-min text-nowrap text-3xl font-bold text-fifth lg:mx-2 lg:text-5xl">
                             SMART SAVINGS
                         </h3>
                     </header>
-                    <main className="flex w-[400px] flex-col gap-5">
-                        <p className="mx-2 text-lg font-semibold text-fifth">
+                    <main className="flex w-full flex-col items-center gap-5 lg:max-w-[400px] lg:items-start">
+                        <p className="text-base font-semibold text-fifth lg:mx-2 lg:text-lg">
                             Manage your expenses and savings efficiently. Record
                             your income, track your spending, and plan your
                             savings with precision. Analyze your financial
@@ -63,14 +63,14 @@ export default function Home() {
                             stability with ease.
                         </p>
                         <a
-                            className="mx-2 w-min text-nowrap rounded-lg bg-fifth px-5 py-2 text-lg font-semibold text-primary hover:shadow-lg"
+                            className="w-min text-nowrap rounded-lg bg-fifth px-3 py-1 text-lg font-semibold text-primary hover:shadow-lg lg:mx-2 lg:px-5 lg:py-2"
                             href={route('login')}
                         >
                             LOGIN
                         </a>
                     </main>
                 </section>
-                <section className="flex w-1/2 items-center justify-center">
+                <section className="flex w-full items-center justify-center lg:w-1/2">
                     <img
                         src="/assets/images/chanchito.webp"
                         alt="chanchito"

@@ -20,7 +20,7 @@ export default function Register() {
         });
     };
     return (
-        <main className="flex min-h-screen w-screen items-center justify-around bg-gray-50">
+        <main className="flex min-h-screen w-full items-center justify-around bg-gray-50">
             <Head title="Register" />
             <section
                 className="hidden h-screen w-1/2 bg-cover bg-center bg-no-repeat lg:block"
@@ -45,10 +45,10 @@ export default function Register() {
                 </svg>
                 <span className="text-sm font-medium">Home</span>
             </Link>
-            <section className="flex h-screen w-1/2 flex-col items-center justify-center gap-4 bg-white">
+            <section className="flex h-screen w-full flex-col items-center justify-center gap-4 bg-white md:w-1/2">
                 <form
                     onSubmit={submit}
-                    className="flex w-96 flex-col gap-4 rounded-lg p-10"
+                    className="flex flex-col gap-4 rounded-lg p-10 md:w-96"
                 >
                     <h1 className="text-center text-3xl font-bold text-quaternary">
                         Register

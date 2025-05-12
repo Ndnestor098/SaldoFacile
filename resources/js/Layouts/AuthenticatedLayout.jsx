@@ -1,3 +1,4 @@
+import Alert from '@/Components/Alert';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import NavMenu from '@/Components/NavMenu';
 import { Link, usePage } from '@inertiajs/react';
@@ -10,19 +11,6 @@ export default function AuthenticatedLayout({ children }) {
     const [notification, setNotification] = useState(0);
     const [menuOpenUser, setMenuOpenUser] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
-    const [alert, setAlert] = useState(() => {
-        const stored = sessionStorage.getItem('alert');
-        if (stored) {
-            const elapsed = Date.now() - Number(stored);
-            // 5 minutos = 300,000 ms
-            if (elapsed < 300000) {
-                return true; // sigue activa
-            } else {
-                sessionStorage.removeItem('alert'); // expiró
-            }
-        }
-        return false; // no existe o expiró
-    });
 
     const [theme, setTheme] = useState('light');
 
@@ -521,76 +509,7 @@ export default function AuthenticatedLayout({ children }) {
                     <div className="max-w-8xl mx-2 sm:px-6 md:mx-auto lg:px-8">
                         {children}
 
-                        <div
-                            onClick={() => {
-                                setAlert(true);
-                                sessionStorage.setItem('alert', Date.now());
-                            }}
-                            className={`absolute bottom-1 right-1 z-50 flex h-24 w-3/4 max-w-7xl overflow-hidden rounded-xl bg-white shadow-lg ${
-                                alert && 'hidden'
-                            }`}
-                        >
-                            <svg
-                                width="16"
-                                height="96"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M 8 0 
-                                        Q 4 4.8, 8 9.6 
-                                        T 8 19.2 
-                                        Q 4 24, 8 28.8 
-                                        T 8 38.4 
-                                        Q 4 43.2, 8 48 
-                                        T 8 57.6 
-                                        Q 4 62.4, 8 67.2 
-                                        T 8 76.8 
-                                        Q 4 81.6, 8 86.4 
-                                        T 8 96 
-                                        L 0 96 
-                                        L 0 0 
-                                        Z"
-                                    fill="#9EC6F3"
-                                    stroke="#9EC6F3"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                ></path>
-                            </svg>
-                            <div className="mx-2.5 w-full overflow-hidden">
-                                <p className="r-3 mt-1.5 overflow-hidden text-ellipsis whitespace-nowrap text-xl font-bold leading-8 text-[#9EC6F3]">
-                                    Important Notice About This Version!
-                                </p>
-                                <p className="text-zinc-40 max-h-10 overflow-hidden break-all leading-5">
-                                    You are using a beta version of this
-                                    platform. Feel free to explore and use all
-                                    its features. If you encounter any errors or
-                                    have suggestions, don’t hesitate to contact
-                                    us at
-                                    <a href="mailto:trabajo.nestor.098@gmail.com">
-                                        trabajo.nestor.098@gmail.com
-                                    </a>{' '}
-                                    or send us a direct message on Instagram:
-                                    @catmaster. Thank you for supporting the
-                                    development!
-                                </p>
-                            </div>
-                            <button className="w-16 cursor-pointer focus:outline-none">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth="2"
-                                    stroke="#9EC6F3"
-                                    fill="none"
-                                    className="h-7 w-7"
-                                >
-                                    <path
-                                        d="M6 18L18 6M6 6l12 12"
-                                        strokeLinejoin="round"
-                                        strokeLinecap="round"
-                                    ></path>
-                                </svg>
-                            </button>
-                        </div>
+                        <Alert />
                     </div>
                 </div>
             </main>
