@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->enum('frequency', ['daily', 'weekly', 'monthly', 'yearly']);
             $table->string('payment_method')->nullable();
-            $table->integer('payment_date')->nullable();
+            $table->string('payment_date')->nullable();
             $table->string('date');
             $table->string('source')->nullable();
             $table->date('end_date')->nullable();
