@@ -359,7 +359,7 @@ export default function Mortgage({
                                     <li>
                                         <strong>HOA Fees:</strong> ${hoa_fees}
                                     </li>
-                                    <li className="border-t pt-2 font-semibold">
+                                    <li className="border-b border-t border-gray-400 py-2 font-semibold">
                                         <strong>Total Monthly Payment:</strong>{' '}
                                         ${total_monthly_payment}
                                     </li>
