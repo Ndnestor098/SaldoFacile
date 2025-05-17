@@ -1,14 +1,67 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
-import { Info } from "lucide-react";
+import { Head, useForm } from '@inertiajs/react';
+import { Info } from 'lucide-react';
 
-export default function Mortgage() {
+export default function Mortgage({
+    principal_payment,
+    property_tax,
+    home_insurance,
+    hoa_fees,
+    total_monthly_payment,
+    amortization_schedule,
+}) {
+    const queryParams = new URLSearchParams(window.location.search);
+
+    const { data, setData, get, reset, errors } = useForm({
+        loan_amount: queryParams.get('loan_amount') || '', // Monto total del préstamo
+        interest_rate: queryParams.get('interest_rate') || '', // Tasa de interés anual (%)
+        loan_term: queryParams.get('loan_term') || '', // Plazo del préstamo en años
+        down_payment: queryParams.get('down_payment') || '', // Pago inicial (opcional)
+        property_tax: queryParams.get('property_tax') || '', // Impuesto a la propiedad (% anual, opcional)
+        home_insurance: queryParams.get('home_insurance') || '', // Seguro del hogar (mensual, opcional)
+        hoa_fees: queryParams.get('hoa_fees') || '', // Cuotas HOA mensuales (opcional)
+    });
+
+    console.log(amortization_schedule);
+
+    const groupedByYear = amortization_schedule.reduce((acc, item) => {
+        const year = Math.ceil(item.month / 12);
+        if (!acc[year]) acc[year] = [];
+        acc[year].push(item);
+        return acc;
+    }, {});
+
+    const monthNames = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+    ];
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        get(route('mortgage'), {
+            onSuccess: () => {
+                reset();
+            },
+        });
+    };
+
     return (
         <>
             <Head title="Dashboard" />
             <AuthenticatedLayout>
                 {/* Incomes and Expenses */}
-                <section className="relative mt-2 flex flex-wrap justify-center gap-2 sm:flex-nowrap">
+                {/* <section className="relative mt-2 flex flex-wrap justify-center gap-2 sm:flex-nowrap">
                     <div className="flex w-full justify-around gap-3 bg-white p-4 dark:bg-gray-200">
                         <button className="flex items-center justify-center gap-2">
                             <img src="/assets/images/italy.png" alt="" />
@@ -23,13 +76,16 @@ export default function Mortgage() {
                             <span className="font-semibold">U.S.A</span>
                         </button>
                     </div>
-                </section>
+                </section> */}
 
                 <section className="relative mt-2 flex flex-wrap justify-center gap-2 sm:flex-nowrap">
-                    <div className="flex w-full justify-center bg-white p-4 dark:bg-gray-200">
+                    <div className="flex w-full flex-col items-center gap-2 bg-white p-4 dark:bg-gray-200">
+                        <h2 className="text-xl font-semibold text-gray-800">
+                            Calcolator Mortgage
+                        </h2>
                         <form
-                            action=""
                             className="flex w-full max-w-[600px] flex-col gap-3"
+                            onSubmit={handleSubmit}
                         >
                             <div className="flex flex-wrap justify-between gap-4 sm:flex-nowrap">
                                 <label className="flex w-full flex-col gap-1">
@@ -51,7 +107,19 @@ export default function Mortgage() {
                                         name="loan_amount"
                                         placeholder="Ej: 200000"
                                         required
+                                        onChange={(e) =>
+                                            setData(
+                                                'loan_amount',
+                                                e.target.value,
+                                            )
+                                        }
+                                        value={data.loan_amount}
                                     />
+                                    {errors.loan_amount && (
+                                        <span className="text-center text-sm font-semibold text-red_primary">
+                                            {errors.loan_amount}
+                                        </span>
+                                    )}
                                 </label>
 
                                 <label className="flex w-full flex-col gap-1">
@@ -73,7 +141,19 @@ export default function Mortgage() {
                                         name="down_payment"
                                         placeholder="Ej: 40000"
                                         required
+                                        onChange={(e) =>
+                                            setData(
+                                                'down_payment',
+                                                e.target.value,
+                                            )
+                                        }
+                                        value={data.down_payment}
                                     />
+                                    {errors.down_payment && (
+                                        <span className="text-center text-sm font-semibold text-red_primary">
+                                            {errors.down_payment}
+                                        </span>
+                                    )}
                                 </label>
                             </div>
 
@@ -97,7 +177,19 @@ export default function Mortgage() {
                                         step="0.01"
                                         placeholder="Ej: 3.5"
                                         required
+                                        onChange={(e) =>
+                                            setData(
+                                                'interest_rate',
+                                                e.target.value,
+                                            )
+                                        }
+                                        value={data.interest_rate}
                                     />
+                                    {errors.interest_rate && (
+                                        <span className="text-center text-sm font-semibold text-red_primary">
+                                            {errors.interest_rate}
+                                        </span>
+                                    )}
                                 </label>
 
                                 <label className="flex w-full flex-col gap-1">
@@ -118,7 +210,16 @@ export default function Mortgage() {
                                         name="loan_term"
                                         placeholder="Ej: 30"
                                         required
+                                        onChange={(e) =>
+                                            setData('loan_term', e.target.value)
+                                        }
+                                        value={data.loan_term}
                                     />
+                                    {errors.loan_term && (
+                                        <span className="text-center text-sm font-semibold text-red_primary">
+                                            {errors.loan_term}
+                                        </span>
+                                    )}
                                 </label>
                             </div>
 
@@ -143,7 +244,19 @@ export default function Mortgage() {
                                         step="0.01"
                                         placeholder="Ej: 1.2"
                                         required
+                                        onChange={(e) =>
+                                            setData(
+                                                'property_tax',
+                                                e.target.value,
+                                            )
+                                        }
+                                        value={data.property_tax}
                                     />
+                                    {errors.property_tax && (
+                                        <span className="text-center text-sm font-semibold text-red_primary">
+                                            {errors.property_tax}
+                                        </span>
+                                    )}
                                 </label>
 
                                 <label className="flex w-full flex-col gap-1">
@@ -164,7 +277,19 @@ export default function Mortgage() {
                                         name="home_insurance"
                                         placeholder="Ej: 1000"
                                         required
+                                        onChange={(e) =>
+                                            setData(
+                                                'home_insurance',
+                                                e.target.value,
+                                            )
+                                        }
+                                        value={data.home_insurance}
                                     />
+                                    {errors.home_insurance && (
+                                        <span className="text-center text-sm font-semibold text-red_primary">
+                                            {errors.home_insurance}
+                                        </span>
+                                    )}
                                 </label>
                             </div>
 
@@ -185,7 +310,17 @@ export default function Mortgage() {
                                     type="number"
                                     name="hoa_fees"
                                     placeholder="Ej: 150"
+                                    required
+                                    onChange={(e) =>
+                                        setData('hoa_fees', e.target.value)
+                                    }
+                                    value={data.hoa_fees}
                                 />
+                                {errors.hoa_fees && (
+                                    <span className="text-center text-sm font-semibold text-red_primary">
+                                        {errors.hoa_fees}
+                                    </span>
+                                )}
                             </label>
 
                             <button
@@ -197,6 +332,108 @@ export default function Mortgage() {
                         </form>
                     </div>
                 </section>
+
+                {principal_payment &&
+                    property_tax &&
+                    home_insurance &&
+                    hoa_fees &&
+                    total_monthly_payment && (
+                        <section className="relative mt-2 flex flex-wrap justify-center gap-2 sm:flex-nowrap">
+                            <div className="flex w-full flex-col gap-4 bg-white p-4 shadow-md dark:bg-gray-200">
+                                <h2 className="text-xl font-semibold text-gray-800">
+                                    Monthly Mortgage Summary
+                                </h2>
+                                <ul className="space-y-1 text-gray-700">
+                                    <li>
+                                        <strong>Principal & Interest:</strong> $
+                                        {principal_payment}
+                                    </li>
+                                    <li>
+                                        <strong>Property Tax:</strong> $
+                                        {property_tax}
+                                    </li>
+                                    <li>
+                                        <strong>Home Insurance:</strong> $
+                                        {home_insurance}
+                                    </li>
+                                    <li>
+                                        <strong>HOA Fees:</strong> ${hoa_fees}
+                                    </li>
+                                    <li className="border-t pt-2 font-semibold">
+                                        <strong>Total Monthly Payment:</strong>{' '}
+                                        ${total_monthly_payment}
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    )}
+
+                {amortization_schedule && (
+                    <section className="relative flex flex-col justify-center gap-2 bg-white shadow-md dark:bg-gray-200 sm:flex-nowrap">
+                        <h2 className="text-center text-xl font-semibold text-gray-800">
+                            Amortization Schedule by Month
+                        </h2>
+                        <div className="flex w-full flex-wrap justify-between gap-4 p-4">
+                            {Object.entries(groupedByYear).map(
+                                ([year, months]) => (
+                                    <div key={year}>
+                                        <h2 className="text-center text-lg font-bold">
+                                            Year {year}
+                                        </h2>
+                                        {months.map((item, index) => (
+                                            <div
+                                                key={item.month}
+                                                className={`p-2 shadow ${
+                                                    index % 2 === 0
+                                                        ? 'bg-gray-300'
+                                                        : 'bg-gray-200'
+                                                }`}
+                                            >
+                                                <p className="font-semibold">
+                                                    Mes:{' '}
+                                                    <span className="font-normal">
+                                                        {
+                                                            monthNames[
+                                                                (item.month -
+                                                                    1) %
+                                                                    12
+                                                            ]
+                                                        }
+                                                    </span>
+                                                </p>
+                                                <p className="font-semibold">
+                                                    Interest Payment: $
+                                                    <span className="font-normal">
+                                                        {item.interest_payment}
+                                                    </span>
+                                                </p>
+                                                <p className="font-semibold">
+                                                    Principal Payment: $
+                                                    <span className="font-normal">
+                                                        {item.principal_payment}
+                                                    </span>
+                                                </p>
+                                                <p className="font-semibold">
+                                                    Total: $
+                                                    <span className="font-normal">
+                                                        {item.principal_payment +
+                                                            item.interest_payment}
+                                                    </span>
+                                                </p>
+                                                <p className="font-semibold">
+                                                    Remaining Balance: $
+                                                    <span className="font-normal">
+                                                        {item.remaining_balance}
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ),
+                            )}
+                        </div>
+                    </section>
+                )}
             </AuthenticatedLayout>
         </>
     );
