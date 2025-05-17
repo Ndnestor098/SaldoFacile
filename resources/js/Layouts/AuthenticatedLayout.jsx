@@ -57,6 +57,21 @@ export default function AuthenticatedLayout({ children }) {
         },
     ];
 
+    const toolsMenu = [
+        {
+            name: 'Mortgage',
+            route: 'tools.mortgage',
+        },
+        {
+            name: 'History',
+            route: 'tools.credit',
+        },
+        {
+            name: 'Categories',
+            route: 'tools.tax',
+        },
+    ];
+
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
             {/* Menu LEFT */}
@@ -146,6 +161,17 @@ export default function AuthenticatedLayout({ children }) {
                             </span>
                         </Link>
                     </li> */}
+                    <span className="font-bold text-gray-400 dark:text-primary">
+                        TOOLS
+                    </span>
+                    {toolsMenu.map((item, index) => (
+                        <NavMenu
+                            key={index}
+                            url={url}
+                            menu={item}
+                            subMenu={item.subMenu}
+                        />
+                    ))}
                 </ul>
                 <div className="absolute bottom-2 flex h-8 w-full items-center justify-between pr-6">
                     <span className="font-semibold text-quaternary dark:text-primary">

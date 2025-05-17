@@ -48,7 +48,7 @@ export default function Alert() {
                             sessionStorage.setItem('alert', Date.now());
                         }}
                     >
-                        Button
+                        Accept
                     </button>
                 </div>
             </div>
