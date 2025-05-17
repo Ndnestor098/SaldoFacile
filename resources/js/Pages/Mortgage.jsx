@@ -22,14 +22,14 @@ export default function Mortgage({
         hoa_fees: queryParams.get('hoa_fees') || '', // Cuotas HOA mensuales (opcional)
     });
 
-    console.log(amortization_schedule);
-
-    const groupedByYear = amortization_schedule.reduce((acc, item) => {
-        const year = Math.ceil(item.month / 12);
-        if (!acc[year]) acc[year] = [];
-        acc[year].push(item);
-        return acc;
-    }, {});
+    const groupedByYear =
+        amortization_schedule &&
+        amortization_schedule.reduce((acc, item) => {
+            const year = Math.ceil(item.month / 12);
+            if (!acc[year]) acc[year] = [];
+            acc[year].push(item);
+            return acc;
+        }, {});
 
     const monthNames = [
         'January',
