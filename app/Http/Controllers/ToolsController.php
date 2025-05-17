@@ -8,7 +8,7 @@ use Inertia\Inertia;
 class ToolsController extends Controller
 {
     public function mortgage(Request $request) {
-        return 'Hola - Mortgage';
+        
         return Inertia::render('Mortgage');
     }
 

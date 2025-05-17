@@ -6,7 +6,7 @@ export default function HistoryButton({ active, setActive, type }) {
                 className={`rounded px-4 py-2 font-semibold ${
                     active
                         ? 'cursor-no-drop bg-gray-100 text-gray-300 dark:bg-gray-500 dark:text-white'
-                        : 'bg-gray-300 text-quaternary dark:bg-gray-800 dark:text-white'
+                        : 'bg-gray-300 text-quaternary hover:bg-gray-800 hover:text-white dark:bg-gray-800 dark:text-white dark:hover:bg-gray-300 dark:hover:text-quaternary'
                 }`}
                 disabled={active}
             >
@@ -17,7 +17,7 @@ export default function HistoryButton({ active, setActive, type }) {
                 className={`rounded px-4 py-2 font-semibold ${
                     !active
                         ? 'cursor-no-drop bg-gray-100 text-gray-300 dark:bg-gray-500 dark:text-white'
-                        : 'bg-gray-300 text-quaternary dark:bg-gray-800 dark:text-white'
+                        : 'bg-gray-300 text-quaternary hover:bg-gray-800 hover:text-white dark:bg-gray-800 dark:text-white dark:hover:bg-gray-300 dark:hover:text-quaternary'
                 }`}
                 disabled={!active}
             >
