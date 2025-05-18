@@ -63,11 +63,11 @@ export default function AuthenticatedLayout({ children }) {
             route: 'tools.mortgage',
         },
         {
-            name: 'History',
+            name: 'Credit',
             route: 'tools.credit',
         },
         {
-            name: 'Categories',
+            name: 'Taxes',
             route: 'tools.tax',
         },
     ];
