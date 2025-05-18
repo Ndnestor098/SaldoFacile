@@ -49,7 +49,7 @@ export default function Mortgage({
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        get('/mortgage', {
+        get(route('tools.mortgage'), {
             onSuccess: () => {
                 reset();
             },
