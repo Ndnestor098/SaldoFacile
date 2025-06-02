@@ -13,13 +13,13 @@ class MortgageService {
      */
     public function calculate(Request $request) {
         $request->validate([
-            'loan_amount' => 'required|numeric',      // Monto total del préstamo hipotecario
-            'interest_rate' => 'required|numeric',    // Tasa de interés anual en porcentaje
-            'loan_term' => 'required|integer',        // Plazo en años
-            'down_payment' => 'required|numeric',     // Pago inicial
-            'property_tax' => 'required|numeric',     // Impuesto anual en porcentaje
-            'home_insurance' => 'required|numeric',   // Seguro anual en dólares
-            'hoa_fees' => 'required|numeric',         // Cuotas mensuales HOA en dólares
+            'loan_amount' => 'required|numeric|min:1',      // Monto total del préstamo hipotecario
+            'interest_rate' => 'required|numeric|min:0',    // Tasa de interés anual en porcentaje
+            'loan_term' => 'required|integer|min:1',        // Plazo en años
+            'down_payment' => 'required|numeric|min:0',     // Pago inicial
+            'property_tax' => 'required|numeric|min:0',     // Impuesto anual en porcentaje
+            'home_insurance' => 'required|numeric|min:0',   // Seguro anual en dólares
+            'hoa_fees' => 'required|numeric|min:0',         // Cuotas mensuales HOA en dólares
         ]);
 
         $loanAmount = $request->loan_amount;

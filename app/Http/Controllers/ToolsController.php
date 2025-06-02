@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Service\CreditService;
 use App\Service\MortgageService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -28,9 +29,20 @@ class ToolsController extends Controller
         return Inertia::render('Mortgage', $result);
     }
 
-    public function credit(Request $request) {
-        return 'Maintenance - Credit';
-        return Inertia::render('Credit');
+    public function credit(Request $request, CreditService $creditService) {
+        $required = [
+            'loan_amount',
+            'interest_rate',
+            'loan_term',
+        ];
+
+        if (!collect($required)->every(fn($key) => $request->filled($key))) {
+            return Inertia::render('Credit');
+        }
+
+        $result = $creditService->calculate($request);
+
+        return Inertia::render('Credit', $result);
     }
 
     public function tax(Request $request) {
