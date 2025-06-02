@@ -15,16 +15,20 @@ Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
+    Route::post('register', [RegisteredUserController::class, 'store'])
+        ->middleware('throttle:4,1');
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
-
+    
+    Route::post('login', [AuthenticatedSessionController::class, 'store'])
+        ->middleware('throttle:4,1');
+    
     Route::get('/auth/google/redirect', [AuthenticatedSessionController::class, 'redirectToGoogle'])
+        ->middleware('throttle:4,1')
         ->name('google');
-    Route::get('/auth/google/callback', [AuthenticatedSessionController::class, 'handleGoogleCallback']);
 
-    Route::post('login', [AuthenticatedSessionController::class, 'store']);
+    Route::get('/auth/google/callback', [AuthenticatedSessionController::class, 'handleGoogleCallback']);
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
