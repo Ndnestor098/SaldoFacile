@@ -20,12 +20,14 @@ export default function Credit({
         down_payment: queryParams.get('down_payment') || '', // Pago inicial (opcional)
     });
 
-    const groupedByYear = schedule.reduce((acc, item) => {
-        const year = item.year;
-        if (!acc[year]) acc[year] = [];
-        acc[year].push(item);
-        return acc;
-    }, {});
+    const groupedByYear =
+        schedule &&
+        schedule.reduce((acc, item) => {
+            const year = item.year;
+            if (!acc[year]) acc[year] = [];
+            acc[year].push(item);
+            return acc;
+        }, {});
 
     const handleSubmit = (e) => {
         e.preventDefault();
