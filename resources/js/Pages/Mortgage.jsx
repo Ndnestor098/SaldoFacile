@@ -95,9 +95,8 @@ export default function Mortgage({
                                             <Info className="w-4 cursor-pointer" />
                                             <span className="absolute left-1/2 top-0 z-10 mt-6 hidden w-64 max-w-xs -translate-x-1/2 rounded-md bg-gray-700 p-2 text-sm text-white group-hover:block sm:left-3 sm:translate-x-0">
                                                 <span className="absolute left-1/2 top-[-8px] -translate-x-1/2 border-x-8 border-b-8 border-x-transparent border-b-gray-700 sm:left-0 sm:top-[-4px] sm:translate-x-0 sm:border-x-0 sm:border-y-8 sm:border-b-0 sm:border-l-8 sm:border-y-transparent sm:border-l-gray-700"></span>
-                                                Monto total del préstamo
-                                                hipotecario (sinentrada
-                                                inicial).
+                                                Total loan amount (without down
+                                                payment).
                                             </span>
                                         </div>
                                     </span>
@@ -105,7 +104,7 @@ export default function Mortgage({
                                         className="w-full rounded-md border border-gray-300 px-4 py-2 text-quaternary focus:border-blue-500 focus:outline-none"
                                         type="number"
                                         name="loan_amount"
-                                        placeholder="Ej: 200000"
+                                        placeholder="e.g. 200000"
                                         required
                                         onChange={(e) =>
                                             setData(
@@ -129,9 +128,8 @@ export default function Mortgage({
                                             <Info className="w-4 cursor-pointer" />
                                             <span className="absolute left-1/2 top-0 z-10 mt-6 hidden w-64 max-w-xs -translate-x-1/2 rounded-md bg-gray-700 p-2 text-sm text-white group-hover:block sm:left-3 sm:translate-x-0">
                                                 <span className="absolute left-1/2 top-[-8px] -translate-x-1/2 border-x-8 border-b-8 border-x-transparent border-b-gray-700 sm:left-0 sm:top-[-4px] sm:translate-x-0 sm:border-x-0 sm:border-y-8 sm:border-b-0 sm:border-l-8 sm:border-y-transparent sm:border-l-gray-700"></span>
-                                                Cantidad inicial pagada. Se
-                                                resta del monto total del
-                                                préstamo.
+                                                Initial amount paid. Deducted
+                                                from the total loan amount.
                                             </span>
                                         </div>
                                     </span>
@@ -139,7 +137,7 @@ export default function Mortgage({
                                         className="w-full rounded-md border border-gray-300 px-4 py-2 text-quaternary focus:border-blue-500 focus:outline-none"
                                         type="number"
                                         name="down_payment"
-                                        placeholder="Ej: 40000"
+                                        placeholder="e.g. 40000"
                                         required
                                         onChange={(e) =>
                                             setData(
@@ -165,8 +163,8 @@ export default function Mortgage({
                                             <Info className="w-4 cursor-pointer" />
                                             <span className="absolute left-1/2 top-0 z-10 mt-6 hidden w-64 max-w-xs -translate-x-1/2 rounded-md bg-gray-700 p-2 text-sm text-white group-hover:block sm:left-3 sm:translate-x-0">
                                                 <span className="absolute left-1/2 top-[-8px] -translate-x-1/2 border-x-8 border-b-8 border-x-transparent border-b-gray-700 sm:left-0 sm:top-[-4px] sm:translate-x-0 sm:border-x-0 sm:border-y-8 sm:border-b-0 sm:border-l-8 sm:border-y-transparent sm:border-l-gray-700"></span>
-                                                Tasa de interés anual del
-                                                préstamo (por ejemplo, 3.5).
+                                                Annual interest rate of the loan
+                                                (e.g., 3.5).
                                             </span>
                                         </div>
                                     </span>
@@ -175,7 +173,7 @@ export default function Mortgage({
                                         type="number"
                                         name="interest_rate"
                                         step="0.01"
-                                        placeholder="Ej: 3.5"
+                                        placeholder="e.g. 3.5"
                                         required
                                         onChange={(e) =>
                                             setData(
@@ -199,8 +197,8 @@ export default function Mortgage({
                                             <Info className="w-4 cursor-pointer" />
                                             <span className="absolute left-1/2 top-0 z-10 mt-6 hidden w-64 max-w-xs -translate-x-1/2 rounded-md bg-gray-700 p-2 text-sm text-white group-hover:block sm:left-3 sm:translate-x-0">
                                                 <span className="absolute left-1/2 top-[-8px] -translate-x-1/2 border-x-8 border-b-8 border-x-transparent border-b-gray-700 sm:left-0 sm:top-[-4px] sm:translate-x-0 sm:border-x-0 sm:border-y-8 sm:border-b-0 sm:border-l-8 sm:border-y-transparent sm:border-l-gray-700"></span>
-                                                Duración del préstamo en años
-                                                (por ejemplo, 15 o 30).
+                                                Loan duration in years (e.g., 15
+                                                or 30).
                                             </span>
                                         </div>
                                     </span>
@@ -208,7 +206,7 @@ export default function Mortgage({
                                         className="w-full rounded-md border border-gray-300 px-4 py-2 text-quaternary focus:border-blue-500 focus:outline-none"
                                         type="number"
                                         name="loan_term"
-                                        placeholder="Ej: 30"
+                                        placeholder="e.g. 30"
                                         required
                                         onChange={(e) =>
                                             setData('loan_term', e.target.value)
@@ -231,9 +229,8 @@ export default function Mortgage({
                                             <Info className="w-4 cursor-pointer" />
                                             <span className="absolute left-1/2 top-0 z-10 mt-6 hidden w-64 max-w-xs -translate-x-1/2 rounded-md bg-gray-700 p-2 text-sm text-white group-hover:block sm:left-3 sm:translate-x-0">
                                                 <span className="absolute left-1/2 top-[-8px] -translate-x-1/2 border-x-8 border-b-8 border-x-transparent border-b-gray-700 sm:left-0 sm:top-[-4px] sm:translate-x-0 sm:border-x-0 sm:border-y-8 sm:border-b-0 sm:border-l-8 sm:border-y-transparent sm:border-l-gray-700"></span>
-                                                Impuesto anual sobre la
-                                                propiedad, como porcentaje del
-                                                valor de la casa.
+                                                Annual property tax as a
+                                                percentage of the home value.
                                             </span>
                                         </div>
                                     </span>
@@ -242,7 +239,7 @@ export default function Mortgage({
                                         type="number"
                                         name="property_tax"
                                         step="0.01"
-                                        placeholder="Ej: 1.2"
+                                        placeholder="e.g. 1.2"
                                         required
                                         onChange={(e) =>
                                             setData(
@@ -266,8 +263,7 @@ export default function Mortgage({
                                             <Info className="w-4 cursor-pointer" />
                                             <span className="absolute left-1/2 top-0 z-10 mt-6 hidden w-64 max-w-xs -translate-x-1/2 rounded-md bg-gray-700 p-2 text-sm text-white group-hover:block sm:left-3 sm:translate-x-0">
                                                 <span className="absolute left-1/2 top-[-8px] -translate-x-1/2 border-x-8 border-b-8 border-x-transparent border-b-gray-700 sm:left-0 sm:top-[-4px] sm:translate-x-0 sm:border-x-0 sm:border-y-8 sm:border-b-0 sm:border-l-8 sm:border-y-transparent sm:border-l-gray-700"></span>
-                                                Costo del seguro de la vivienda
-                                                (anual).
+                                                Annual cost of home insurance.
                                             </span>
                                         </div>
                                     </span>
@@ -275,7 +271,7 @@ export default function Mortgage({
                                         className="w-full rounded-md border border-gray-300 px-4 py-2 text-quaternary focus:border-blue-500 focus:outline-none"
                                         type="number"
                                         name="home_insurance"
-                                        placeholder="Ej: 1000"
+                                        placeholder="e.g. 1000"
                                         required
                                         onChange={(e) =>
                                             setData(
@@ -300,8 +296,8 @@ export default function Mortgage({
                                         <Info className="w-4 cursor-pointer" />
                                         <span className="absolute left-1/2 top-0 z-10 mt-6 hidden w-64 max-w-xs -translate-x-1/2 rounded-md bg-gray-700 p-2 text-sm text-white group-hover:block sm:left-3 sm:translate-x-0">
                                             <span className="absolute left-1/2 top-[-8px] -translate-x-1/2 border-x-8 border-b-8 border-x-transparent border-b-gray-700 sm:left-0 sm:top-[-4px] sm:translate-x-0 sm:border-x-0 sm:border-y-8 sm:border-b-0 sm:border-l-8 sm:border-y-transparent sm:border-l-gray-700"></span>
-                                            Cuotas mensuales de la asociación de
-                                            propietarios (si aplica).
+                                            Monthly homeowners association fees
+                                            (if applicable, otherwise enter 0).
                                         </span>
                                     </div>
                                 </span>
@@ -309,7 +305,7 @@ export default function Mortgage({
                                     className="w-full rounded-md border border-gray-300 px-4 py-2 text-quaternary focus:border-blue-500 focus:outline-none"
                                     type="number"
                                     name="hoa_fees"
-                                    placeholder="Ej: 150"
+                                    placeholder="e.g. 150"
                                     required
                                     onChange={(e) =>
                                         setData('hoa_fees', e.target.value)
@@ -333,40 +329,36 @@ export default function Mortgage({
                     </div>
                 </section>
 
-                {principal_payment &&
-                    property_tax &&
-                    home_insurance &&
-                    hoa_fees &&
-                    total_monthly_payment && (
-                        <section className="relative mt-2 flex flex-wrap justify-center gap-2 sm:flex-nowrap">
-                            <div className="flex w-full flex-col gap-4 bg-white p-4 shadow-md dark:bg-gray-200">
-                                <h2 className="text-xl font-semibold text-gray-800">
-                                    Monthly Mortgage Summary
-                                </h2>
-                                <ul className="space-y-1 text-gray-700">
-                                    <li>
-                                        <strong>Principal & Interest:</strong> $
-                                        {principal_payment}
-                                    </li>
-                                    <li>
-                                        <strong>Property Tax:</strong> $
-                                        {property_tax}
-                                    </li>
-                                    <li>
-                                        <strong>Home Insurance:</strong> $
-                                        {home_insurance}
-                                    </li>
-                                    <li>
-                                        <strong>HOA Fees:</strong> ${hoa_fees}
-                                    </li>
-                                    <li className="border-b border-t border-gray-400 py-2 font-semibold">
-                                        <strong>Total Monthly Payment:</strong>{' '}
-                                        ${total_monthly_payment}
-                                    </li>
-                                </ul>
-                            </div>
-                        </section>
-                    )}
+                {principal_payment && total_monthly_payment && (
+                    <section className="relative mt-2 flex flex-wrap justify-center gap-2 sm:flex-nowrap">
+                        <div className="flex w-full flex-col gap-4 bg-white p-4 shadow-md dark:bg-gray-200">
+                            <h2 className="text-xl font-semibold text-gray-800">
+                                Monthly Mortgage Summary
+                            </h2>
+                            <ul className="space-y-1 text-gray-700">
+                                <li>
+                                    <strong>Principal & Interest:</strong> $
+                                    {principal_payment}
+                                </li>
+                                <li>
+                                    <strong>Property Tax:</strong> $
+                                    {property_tax}
+                                </li>
+                                <li>
+                                    <strong>Home Insurance:</strong> $
+                                    {home_insurance}
+                                </li>
+                                <li>
+                                    <strong>HOA Fees:</strong> ${hoa_fees}
+                                </li>
+                                <li className="border-b border-t border-gray-400 py-2 font-semibold">
+                                    <strong>Total Monthly Payment:</strong> $
+                                    {total_monthly_payment}
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                )}
 
                 {amortization_schedule && (
                     <section className="relative flex flex-col justify-center gap-2 bg-white shadow-md dark:bg-gray-200 sm:flex-nowrap">
