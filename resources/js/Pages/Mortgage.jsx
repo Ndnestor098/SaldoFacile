@@ -60,24 +60,6 @@ export default function Mortgage({
         <>
             <Head title="Mortgage" />
             <AuthenticatedLayout>
-                {/* Incomes and Expenses */}
-                {/* <section className="relative mt-2 flex flex-wrap justify-center gap-2 sm:flex-nowrap">
-                    <div className="flex w-full justify-around gap-3 bg-white p-4 dark:bg-gray-200">
-                        <button className="flex items-center justify-center gap-2">
-                            <img src="/assets/images/italy.png" alt="" />
-                            <span className="font-semibold">Italia</span>
-                        </button>
-                        <button className="flex items-center justify-center gap-2">
-                            <img src="/assets/images/spain.png" alt="" />
-                            <span className="font-semibold">Spain</span>
-                        </button>
-                        <button className="flex items-center justify-center gap-2">
-                            <img src="/assets/images/usa.png" alt="" />
-                            <span className="font-semibold">U.S.A</span>
-                        </button>
-                    </div>
-                </section> */}
-
                 <section className="relative mt-2 flex flex-wrap justify-center gap-2 sm:flex-nowrap">
                     <div className="flex w-full flex-col items-center gap-2 bg-white p-4 dark:bg-gray-200">
                         <h2 className="text-xl font-semibold text-gray-800">

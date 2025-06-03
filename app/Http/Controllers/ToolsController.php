@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Service\CreditService;
 use App\Service\MortgageService;
+use App\Service\TaxService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -45,8 +46,19 @@ class ToolsController extends Controller
         return Inertia::render('Credit', $result);
     }
 
-    public function tax(Request $request) {
-        return 'Maintenance - Tax';
-        return Inertia::render('Tax');
+    public function tax(Request $request, TaxService $texService) {
+        $required = [
+            'worker_type',
+            'gross_income',
+            'region',
+        ];
+
+        if (!collect($required)->every(fn($key) => $request->filled($key))) {
+            return Inertia::render('Tax');
+        }
+
+        $result = $texService->calculate($request);
+
+        return Inertia::render('Tax', $result);
     }
 }
