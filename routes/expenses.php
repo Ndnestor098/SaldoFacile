@@ -4,7 +4,6 @@ use App\Http\Controllers\Expense\CategoryController;
 use App\Http\Controllers\Expense\ExpenseController;
 use App\Http\Controllers\Expense\RecurrentExpenseController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/', [ExpenseController::class, 'index'])->name('index');
 Route::post('/create', [ExpenseController::class, 'store'])->name('store');

@@ -1,66 +1,134 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 💰 SaldoFacile
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Portada](https://listana.ndnestor.com/assets/images/share-cover.webp)
 
-## About Laravel
+**SaldoFacile** es una aplicación web moderna para gestionar tus finanzas personales, calcular impuestos y simular créditos o hipotecas. Pensada para personas que desean tener un control claro de sus ingresos, gastos, balances mensuales, y planificar mejor su economía.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Con SaldoFacile podrás:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- ✅ Registrar ingresos (sueldos, bonos, extras)
+- ✅ Registrar gastos únicos y recurrentes
+- ✅ Visualizar balances e historial de movimientos
+- ✅ Gestionar categorías de ingresos y gastos
+- ✅ Usar calculadoras de impuestos, créditos e hipotecas
+- ✅ Recibir consejos financieros basados en tus registros
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## ⚙️ Tecnologías utilizadas
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Laravel 10+** – Backend robusto en PHP
+- **React.js** – Frontend interactivo
+- **Inertia.js** – Navegación fluida sin recargas
+- **Laravel Socialite** – Autenticación con terceros (Google, etc.)
+- **Tailwind CSS** – Estilos modernos y responsivos
+- **MySQL** – Base de datos relacional
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 📦 Instalación
 
-## Laravel Sponsors
+```bash
+git clone https://github.com/tuusuario/saldofacile.git
+cd saldofacile
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+# Instalar dependencias de PHP
+composer install
 
-### Premium Partners
+# Instalar dependencias de JavaScript
+npm install && npm run dev
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+# Copiar y configurar entorno
+cp .env.example .env
+php artisan key:generate
 
-## Contributing
+# Configura tu base de datos en .env
+php artisan migrate
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Opcionalmente, puedes ejecutar:
 
-## Code of Conduct
+```bash
+php artisan db:seed
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## 📜 Rutas principales
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 🏠 Home y Dashboard
 
-## License
+- `/` → Home de bienvenida  
+- `/dashboard` → Vista con resumen de categorías, ingresos, gastos y recurrentes
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+### 💸 Gastos
+
+- `/expenses/` (GET) → Ver todos los gastos  
+- `/expenses/create` (POST) → Crear nuevo gasto  
+- `/expenses/destroy/{expense}` (DELETE) → Eliminar un gasto  
+- `/expenses/recurrent` (GET) → Ver gastos recurrentes  
+- `/expenses/recurrent` (POST) → Crear gasto recurrente  
+- `/expenses/recurrent/destroy/{recurrentExpense}` (DELETE) → Eliminar gasto recurrente  
+- `/expenses/history` (GET) → Historial de gastos  
+- `/expenses/category` (GET) → Ver categorías de gastos  
+- `/expenses/category` (POST) → Crear categoría de gastos  
+- `/expenses/category/{category}` (DELETE) → Eliminar categoría de gastos
+
+---
+
+### 💰 Ingresos
+
+- `/incomes/` (GET) → Ver todos los ingresos  
+- `/incomes/create` (POST) → Crear nuevo ingreso  
+- `/incomes/destroy/{income}` (DELETE) → Eliminar un ingreso  
+- `/incomes/recurrent` (GET) → Ver ingresos recurrentes  
+- `/incomes/recurrent` (POST) → Crear ingreso recurrente  
+- `/incomes/recurring/destroy/{recurrentIncome}` (DELETE) → Eliminar ingreso recurrente  
+- `/incomes/history` (GET) → Historial de ingresos  
+- `/incomes/category` (GET) → Ver categorías de ingresos  
+- `/incomes/category` (POST) → Crear categoría de ingresos  
+- `/incomes/category/{category}` (DELETE) → Eliminar categoría de ingresos
+
+---
+
+### 🛠️ Calculadoras
+
+- `/tools/mortgage` (GET) → Calculadora de hipotecas  
+- `/tools/credit` (GET) → Calculadora de créditos  
+- `/tools/tax` (GET) → Calculadora de impuestos
+
+---
+
+### 📈 Consejos financieros
+
+- `/advice/` (GET) → Ver consejos financieros personalizados
+
+---
+
+### 👤 Perfil
+
+- `/profile/` (GET) → Editar perfil  
+- `/profile` (PATCH) → Actualizar perfil  
+- `/profile` (DELETE) → Eliminar perfil
+
+---
+
+### 🔐 Autenticación
+
+- `/login` → Inicio de sesión  
+- `/register` → Registro de usuario  
+- `/logout` → Cierre de sesión
+
+---
+
+## 🙏 Contribuciones
+
+Este proyecto está en constante mejora. Si deseas contribuir, envía un Pull Request o crea un issue con sugerencias.
+
+---
+
+## © Licencia
+
+Listana es un proyecto personal. Todos los derechos reservados. Puedes usarlo con fines educativos o personales.

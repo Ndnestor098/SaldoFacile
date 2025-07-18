@@ -4,7 +4,6 @@ use App\Http\Controllers\Income\CategoryController;
 use App\Http\Controllers\Income\IncomeController;
 use App\Http\Controllers\Income\RecurrentIncomeController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/', [IncomeController::class, 'index'])->name('index');
 Route::post('/create', [IncomeController::class, 'store'])->name('store');
