@@ -1,6 +1,6 @@
 # 💰 SaldoFacile
 
-![Portada](https://listana.ndnestor.com/assets/images/share-cover.webp)
+![Portada](https://saldofacile.ndnestor.com/assets/images/page.webp)
 
 **SaldoFacile** es una aplicación web moderna para gestionar tus finanzas personales, calcular impuestos y simular créditos o hipotecas. Pensada para personas que desean tener un control claro de sus ingresos, gastos, balances mensuales, y planificar mejor su economía.
 
