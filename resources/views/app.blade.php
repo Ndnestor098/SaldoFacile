@@ -6,7 +6,33 @@
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
+        {{-- Open Graph para redes sociales --}}
+        <meta property="og:title" content="SaldoFacile - Organiza tus Finanzas" />
+        <meta
+            property="og:description"
+            content="SaldoFacile es una aplicación web moderna para gestionar tus finanzas personales, calcular impuestos y simular créditos o hipotecas. Pensada para personas que desean tener un control claro de sus ingresos, gastos, balances mensuales, y planificar mejor su economía."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://saldofacile.ndnestor.com" />
+        <meta
+            property="og:image"
+            content="https://saldofacile.ndnestor.com/assets/images/page.webp"
+        />
+        <meta property="og:site_name" content="SaldoFacile" />
+
+         {{-- Twitter Card (opcional)  --}}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="SaldoFacile - Organiza tus Finanzas" />
+        <meta
+            name="twitter:description"
+            content="SaldoFacile es una aplicación web moderna para gestionar tus finanzas personales, calcular impuestos y simular créditos o hipotecas. Pensada para personas que desean tener un control claro de sus ingresos, gastos, balances mensuales, y planificar mejor su economía."
+        />
+        <meta
+            name="twitter:image"
+            content="https://saldofacile.ndnestor.com/assets/images/page.webp"
+        />
+
+        <!-- Favicon -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
